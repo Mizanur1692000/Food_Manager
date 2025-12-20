@@ -1,0 +1,242 @@
+{
+  "period": "monthly",
+  "month": "2025-10",
+  "sales_records": [
+    {
+      "sale_id": "sale_001",
+      "menu_item_id": "menu_001",
+      "menu_name": "Bruschetta al Pomodoro",
+      "total_units_sold": 180,
+      "avg_daily_sales": 6,
+      "total_revenue": 1618.20,
+      "total_cost": 225.00,
+      "total_profit": 1393.20,
+      "quadrant": "STAR"
+    },
+    {
+      "sale_id": "sale_002",
+      "menu_item_id": "menu_002",
+      "menu_name": "Asian Lettuce Wraps",
+      "total_units_sold": 65,
+      "avg_daily_sales": 2.2,
+      "total_revenue": 779.35,
+      "total_cost": 165.75,
+      "total_profit": 613.60,
+      "quadrant": "PUZZLE"
+    },
+    {
+      "sale_id": "sale_003",
+      "menu_item_id": "menu_003",
+      "menu_name": "Loaded Potato Skins",
+      "total_units_sold": 165,
+      "avg_daily_sales": 5.5,
+      "total_revenue": 1648.35,
+      "total_cost": 217.80,
+      "total_profit": 1430.55,
+      "quadrant": "STAR"
+    },
+    {
+      "sale_id": "sale_004",
+      "menu_item_id": "menu_004",
+      "menu_name": "Shrimp Cocktail",
+      "total_units_sold": 45,
+      "avg_daily_sales": 1.5,
+      "total_revenue": 629.55,
+      "total_cost": 121.50,
+      "total_profit": 508.05,
+      "quadrant": "PUZZLE"
+    },
+    {
+      "sale_id": "sale_005",
+      "menu_item_id": "menu_005",
+      "menu_name": "Caprese Salad",
+      "total_units_sold": 50,
+      "avg_daily_sales": 1.7,
+      "total_revenue": 549.50,
+      "total_cost": 112.50,
+      "total_profit": 437.00,
+      "quadrant": "DOG"
+    },
+    {
+      "sale_id": "sale_006",
+      "menu_item_id": "menu_006",
+      "menu_name": "Grilled Atlantic Salmon",
+      "total_units_sold": 145,
+      "avg_daily_sales": 4.8,
+      "total_revenue": 3913.55,
+      "total_cost": 839.55,
+      "total_profit": 3074.00,
+      "quadrant": "STAR"
+    },
+    {
+      "sale_id": "sale_007",
+      "menu_item_id": "menu_007",
+      "menu_name": "Spaghetti Carbonara",
+      "total_units_sold": 195,
+      "avg_daily_sales": 6.5,
+      "total_revenue": 3313.05,
+      "total_cost": 473.85,
+      "total_profit": 2839.20,
+      "quadrant": "STAR"
+    },
+    {
+      "sale_id": "sale_008",
+      "menu_item_id": "menu_008",
+      "menu_name": "Chicken Stir Fry",
+      "total_units_sold": 175,
+      "avg_daily_sales": 5.8,
+      "total_revenue": 2798.25,
+      "total_cost": 479.50,
+      "total_profit": 2318.75,
+      "quadrant": "PLOWHORSE"
+    },
+    {
+      "sale_id": "sale_009",
+      "menu_item_id": "menu_009",
+      "menu_name": "Classic Burger",
+      "total_units_sold": 185,
+      "avg_daily_sales": 6.2,
+      "total_revenue": 2773.15,
+      "total_cost": 458.80,
+      "total_profit": 2314.35,
+      "quadrant": "PLOWHORSE"
+    },
+    {
+      "sale_id": "sale_010",
+      "menu_item_id": "menu_010",
+      "menu_name": "Fettuccine Alfredo",
+      "total_units_sold": 85,
+      "avg_daily_sales": 2.8,
+      "total_revenue": 1529.15,
+      "total_cost": 290.70,
+      "total_profit": 1238.45,
+      "quadrant": "PUZZLE"
+    },
+    {
+      "sale_id": "sale_011",
+      "menu_item_id": "menu_011",
+      "menu_name": "Herb-Roasted Pork Tenderloin",
+      "total_units_sold": 55,
+      "avg_daily_sales": 1.8,
+      "total_revenue": 1099.45,
+      "total_cost": 141.90,
+      "total_profit": 957.55,
+      "quadrant": "PUZZLE"
+    },
+    {
+      "sale_id": "sale_012",
+      "menu_item_id": "menu_012",
+      "menu_name": "Mushroom Risotto",
+      "total_units_sold": 60,
+      "avg_daily_sales": 2.0,
+      "total_revenue": 1139.40,
+      "total_cost": 177.60,
+      "total_profit": 961.80,
+      "quadrant": "DOG"
+    },
+    {
+      "sale_id": "sale_013",
+      "menu_item_id": "menu_013",
+      "menu_name": "Italian Sausage Pasta",
+      "total_units_sold": 70,
+      "avg_daily_sales": 2.3,
+      "total_revenue": 1259.30,
+      "total_cost": 263.20,
+      "total_profit": 996.10,
+      "quadrant": "DOG"
+    },
+    {
+      "sale_id": "sale_014",
+      "menu_item_id": "menu_014",
+      "menu_name": "Molten Chocolate Lava Cake",
+      "total_units_sold": 155,
+      "avg_daily_sales": 5.2,
+      "total_revenue": 1393.45,
+      "total_cost": 350.30,
+      "total_profit": 1043.15,
+      "quadrant": "STAR"
+    },
+    {
+      "sale_id": "sale_015",
+      "menu_item_id": "menu_015",
+      "menu_name": "Tiramisu",
+      "total_units_sold": 125,
+      "avg_daily_sales": 4.2,
+      "total_revenue": 998.75,
+      "total_cost": 91.25,
+      "total_profit": 907.50,
+      "quadrant": "PLOWHORSE"
+    },
+    {
+      "sale_id": "sale_016",
+      "menu_item_id": "menu_016",
+      "menu_name": "New York Cheesecake",
+      "total_units_sold": 75,
+      "avg_daily_sales": 2.5,
+      "total_revenue": 599.25,
+      "total_cost": 73.50,
+      "total_profit": 525.75,
+      "quadrant": "PUZZLE"
+    },
+    {
+      "sale_id": "sale_017",
+      "menu_item_id": "menu_017",
+      "menu_name": "Panna Cotta",
+      "total_units_sold": 40,
+      "avg_daily_sales": 1.3,
+      "total_revenue": 279.60,
+      "total_cost": 33.20,
+      "total_profit": 246.40,
+      "quadrant": "DOG"
+    },
+    {
+      "sale_id": "sale_018",
+      "menu_item_id": "menu_018",
+      "menu_name": "Espresso",
+      "total_units_sold": 420,
+      "avg_daily_sales": 14.0,
+      "total_revenue": 1470.00,
+      "total_cost": 142.80,
+      "total_profit": 1327.20,
+      "quadrant": "STAR"
+    },
+    {
+      "sale_id": "sale_019",
+      "menu_item_id": "menu_019",
+      "menu_name": "Cappuccino",
+      "total_units_sold": 380,
+      "avg_daily_sales": 12.7,
+      "total_revenue": 1710.00,
+      "total_cost": 155.80,
+      "total_profit": 1554.20,
+      "quadrant": "PLOWHORSE"
+    },
+    {
+      "sale_id": "sale_020",
+      "menu_item_id": "menu_020",
+      "menu_name": "Iced Coffee",
+      "total_units_sold": 95,
+      "avg_daily_sales": 3.2,
+      "total_revenue": 474.05,
+      "total_cost": 73.15,
+      "total_profit": 400.90,
+      "quadrant": "PUZZLE"
+    }
+  ],
+  "summary": {
+    "total_revenue": 31979.35,
+    "total_cost": 5689.65,
+    "total_profit": 26289.70,
+    "total_units_sold": 2785,
+    "avg_food_cost_percent": 17.8,
+    "period_start": "2025-10-01",
+    "period_end": "2025-10-31",
+    "avg_units_per_item": 139.25,
+    "quadrant_distribution": {
+      "STAR": 6,
+      "PLOWHORSE": 4,
+      "PUZZLE": 6,
+      "DOG": 4
+    }
+  }
+}

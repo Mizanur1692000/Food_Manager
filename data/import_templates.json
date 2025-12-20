@@ -1,0 +1,57 @@
+{
+  "SYSCO": {
+    "name": "SYSCO Standard Format",
+    "format_type": "sysco",
+    "column_mappings": {
+      "Desc": "Product Name",
+      "SUPC": "SKU",
+      "Cat": "Category",
+      "Brand": "Brand",
+      "Pack": "Pack",
+      "Size": "Size",
+      "Unit": "Unit"
+    },
+    "price_field": "Split $",
+    "pack_size_columns": {
+      "pack": "Pack",
+      "size": "Size",
+      "unit": "Unit"
+    },
+    "defaults": {
+      "Location": "Dry Goods Storage"
+    }
+  },
+  "TEST_TEMPLATE": {
+    "name": "Test Supplier",
+    "format_type": "sysco",
+    "column_mappings": {
+      "Product Name": "Desc",
+      "SKU": "SUPC"
+    },
+    "price_field": "Case $",
+    "defaults": {
+      "Location": "Storage"
+    }
+  },
+  "Sysco": {
+    "name": "Sysco",
+    "format_type": "sysco",
+    "column_mappings": {
+      "Desc": "Product Name",
+      "SUPC": "SKU",
+      "Cat": "Category",
+      "Brand": "Brand",
+      "Pack": "Pack",
+      "Size": "Size",
+      "Unit": "Size",
+      "Product Name": "Desc",
+      "SKU": "SUPC",
+      "Category": "Cat",
+      "Current Price per Unit": "Case $"
+    },
+    "price_field": "Split $",
+    "defaults": {
+      "Location": "Dry Goods Storage"
+    }
+  }
+}

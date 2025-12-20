@@ -1,0 +1,2479 @@
+{
+  "Bruschetta al Pomodoro": {
+    "recipe_id": "recipe_001",
+    "name": "Bruschetta al Pomodoro",
+    "description": "Classic Italian appetizer with fresh tomatoes, basil, and garlic on toasted bread",
+    "category": "Appetizer",
+    "cuisine": "Italian",
+    "servings": 6,
+    "prep_time": 15,
+    "cook_time": 5,
+    "ingredients": [
+      {
+        "product_name": "Tomatoes Roma Fresh",
+        "quantity": 1.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 1,
+        "unit": "bunch"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.0625,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Tomatoes Roma Fresh",
+        "quantity": 1.5,
+        "unit": "lb",
+        "cost": 2.78,
+        "unit_cost": 1.85
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.3,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 1,
+        "unit": "bunch",
+        "cost": 2.5,
+        "unit_cost": 2.5
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.0625,
+        "unit": "gallon",
+        "cost": 1.78,
+        "unit_cost": 28.5
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.03,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb",
+        "cost": 0.09,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 7.48,
+    "cost_per_serving": 1.25,
+    "instructions": "1. Dice tomatoes and place in bowl\n2. Mince garlic and chop basil\n3. Combine tomatoes, garlic, basil, olive oil, salt, and pepper\n4. Let marinate for 15 minutes\n5. Serve on toasted bread slices",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00",
+    "allergens": [
+      "nightshades"
+    ],
+    "allergen_details": {
+      "nightshades": {
+        "allergen": "nightshades",
+        "display_name": "Nightshades",
+        "confidence": 100,
+        "detection_method": "ai",
+        "reason": "Contains Roma tomatoes, which are nightshade vegetables",
+        "matched_ingredients": [
+          {
+            "ingredient": "Tomatoes Roma Fresh"
+          }
+        ],
+        "metadata": {
+          "display_name": "Nightshades",
+          "category": "vegetable",
+          "severity": "low",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf45",
+          "description": "Contains nightshade vegetables (tomatoes, peppers, eggplant)"
+        },
+        "sources": [
+          "ai"
+        ]
+      }
+    },
+    "allergen_metadata": {
+      "detection_methods": [
+        "ai"
+      ],
+      "last_updated": "2025-12-21T03:32:34.053056",
+      "total_detected": 1,
+      "fda_top_9_count": 0
+    }
+  },
+  "Asian Lettuce Wraps": {
+    "recipe_id": "recipe_002",
+    "name": "Asian Lettuce Wraps",
+    "description": "Light and flavorful chicken lettuce wraps with ginger, garlic, and soy",
+    "category": "Appetizer",
+    "cuisine": "Asian Fusion",
+    "servings": 4,
+    "prep_time": 15,
+    "cook_time": 10,
+    "ingredients": [
+      {
+        "product_name": "Chicken Breast Boneless Skinless",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Lettuce Romaine Hearts",
+        "quantity": 2,
+        "unit": "each"
+      },
+      {
+        "product_name": "Ginger Fresh Root",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Soy Sauce Low Sodium",
+        "quantity": 0.015625,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Sesame Oil Toasted",
+        "quantity": 1,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Onion Red Fresh",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Cilantro Fresh",
+        "quantity": 1,
+        "unit": "bunch"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Chicken Breast Boneless Skinless",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 3.25,
+        "unit_cost": 3.25
+      },
+      {
+        "product_name": "Lettuce Romaine Hearts",
+        "quantity": 2,
+        "unit": "each",
+        "cost": 3.0,
+        "unit_cost": 1.5
+      },
+      {
+        "product_name": "Ginger Fresh Root",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.35,
+        "unit_cost": 3.45
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb",
+        "cost": 0.15,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Soy Sauce Low Sodium",
+        "quantity": 0.015625,
+        "unit": "gallon",
+        "cost": 0.14,
+        "unit_cost": 8.95
+      },
+      {
+        "product_name": "Sesame Oil Toasted",
+        "quantity": 1,
+        "unit": "oz",
+        "cost": 1.25,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Onion Red Fresh",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 0.29,
+        "unit_cost": 1.15
+      },
+      {
+        "product_name": "Cilantro Fresh",
+        "quantity": 1,
+        "unit": "bunch",
+        "cost": 1.75,
+        "unit_cost": 1.75
+      }
+    ],
+    "total_cost": 10.18,
+    "cost_per_serving": 2.55,
+    "instructions": "1. Dice chicken into small pieces\n2. Mince ginger and garlic\n3. Heat sesame oil and saut\u00c3\u00a9 chicken until cooked\n4. Add ginger, garlic, onion, and soy sauce\n5. Separate lettuce leaves for cups\n6. Fill lettuce cups with chicken mixture\n7. Top with fresh cilantro",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Loaded Potato Skins": {
+    "recipe_id": "recipe_003",
+    "name": "Loaded Potato Skins",
+    "description": "Crispy potato skins loaded with bacon, cheese, and sour cream",
+    "category": "Appetizer",
+    "cuisine": "American",
+    "servings": 6,
+    "prep_time": 20,
+    "cook_time": 45,
+    "ingredients": [
+      {
+        "product_name": "Potato Russet 80 Count",
+        "quantity": 2.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Bacon Thick Cut Applewood",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Mozzarella Cheese Shredded",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Sour Cream",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Vegetable Oil Blend",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.03,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Potato Russet 80 Count",
+        "quantity": 2.0,
+        "unit": "lb",
+        "cost": 1.1,
+        "unit_cost": 0.55
+      },
+      {
+        "product_name": "Bacon Thick Cut Applewood",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 2.93,
+        "unit_cost": 5.85
+      },
+      {
+        "product_name": "Mozzarella Cheese Shredded",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 1.83,
+        "unit_cost": 3.65
+      },
+      {
+        "product_name": "Sour Cream",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 1.48,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Vegetable Oil Blend",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 0.54,
+        "unit_cost": 2.15
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.03,
+        "unit": "lb",
+        "cost": 0.04,
+        "unit_cost": 1.25
+      }
+    ],
+    "total_cost": 7.92,
+    "cost_per_serving": 1.32,
+    "instructions": "1. Bake potatoes until tender\n2. Cut in half and scoop out most of the flesh\n3. Brush skins with oil and bake until crispy\n4. Cook bacon until crispy and chop\n5. Fill potato skins with cheese and bacon\n6. Bake until cheese melts\n7. Top with sour cream and serve",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Shrimp Cocktail": {
+    "recipe_id": "recipe_004",
+    "name": "Shrimp Cocktail",
+    "description": "Chilled jumbo shrimp with classic cocktail sauce",
+    "category": "Appetizer",
+    "cuisine": "American",
+    "servings": 4,
+    "prep_time": 15,
+    "cook_time": 5,
+    "ingredients": [
+      {
+        "product_name": "Shrimp 16/20 Peeled Deveined",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Lemon Fresh 115 Count",
+        "quantity": 2,
+        "unit": "each"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Shrimp 16/20 Peeled Deveined",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 9.85,
+        "unit_cost": 9.85
+      },
+      {
+        "product_name": "Lemon Fresh 115 Count",
+        "quantity": 2,
+        "unit": "each",
+        "cost": 0.9,
+        "unit_cost": 0.45
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.03,
+        "unit_cost": 1.25
+      }
+    ],
+    "total_cost": 10.78,
+    "cost_per_serving": 2.7,
+    "instructions": "1. Boil water with salt and lemon\n2. Add shrimp and cook for 3-4 minutes until pink\n3. Shock in ice bath immediately\n4. Arrange on plate with lemon wedges\n5. Serve chilled with cocktail sauce",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00",
+    "allergens": [
+      "shellfish"
+    ],
+    "allergen_details": {
+      "shellfish": {
+        "allergen": "shellfish",
+        "display_name": "Shellfish",
+        "confidence": 100,
+        "detection_method": "ai",
+        "reason": "Contains shrimp, which is a crustacean shellfish",
+        "matched_ingredients": [
+          {
+            "ingredient": "Shrimp 16/20 Peeled Deveined"
+          }
+        ],
+        "metadata": {
+          "display_name": "Shellfish",
+          "category": "seafood",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\udd90",
+          "description": "Contains shellfish or crustacean products"
+        },
+        "sources": [
+          "ai"
+        ]
+      }
+    },
+    "allergen_metadata": {
+      "detection_methods": [
+        "ai"
+      ],
+      "last_updated": "2025-12-21T03:32:29.409690",
+      "total_detected": 1,
+      "fda_top_9_count": 1
+    }
+  },
+  "Caprese Salad": {
+    "recipe_id": "recipe_005",
+    "name": "Caprese Salad",
+    "description": "Fresh mozzarella, tomatoes, and basil drizzled with balsamic",
+    "category": "Appetizer",
+    "cuisine": "Italian",
+    "servings": 4,
+    "prep_time": 10,
+    "cook_time": 0,
+    "ingredients": [
+      {
+        "product_name": "Tomatoes Roma Fresh",
+        "quantity": 1.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Mozzarella Cheese Shredded",
+        "quantity": 0.75,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 1,
+        "unit": "bunch"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.03125,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.01,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Tomatoes Roma Fresh",
+        "quantity": 1.5,
+        "unit": "lb",
+        "cost": 2.78,
+        "unit_cost": 1.85
+      },
+      {
+        "product_name": "Mozzarella Cheese Shredded",
+        "quantity": 0.75,
+        "unit": "lb",
+        "cost": 2.74,
+        "unit_cost": 3.65
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 1,
+        "unit": "bunch",
+        "cost": 2.5,
+        "unit_cost": 2.5
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.03125,
+        "unit": "gallon",
+        "cost": 0.89,
+        "unit_cost": 28.5
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.01,
+        "unit": "lb",
+        "cost": 0.01,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb",
+        "cost": 0.09,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 9.01,
+    "cost_per_serving": 2.25,
+    "instructions": "1. Slice tomatoes and mozzarella into rounds\n2. Arrange alternating slices on plate\n3. Tuck basil leaves between slices\n4. Drizzle with olive oil\n5. Season with salt and pepper",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Grilled Salmon": {
+    "recipe_id": "recipe_006",
+    "name": "Grilled Salmon",
+    "description": "Fresh Atlantic salmon grilled to perfection with lemon butter",
+    "category": "Main Course",
+    "cuisine": "American",
+    "servings": 4,
+    "prep_time": 10,
+    "cook_time": 15,
+    "ingredients": [
+      {
+        "product_name": "Salmon Fillet Fresh Atlantic",
+        "quantity": 1.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Lemon Fresh 115 Count",
+        "quantity": 2,
+        "unit": "each"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Parsley Italian Fresh",
+        "quantity": 1,
+        "unit": "bunch"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Salmon Fillet Fresh Atlantic",
+        "quantity": 1.5,
+        "unit": "lb",
+        "cost": 19.13,
+        "unit_cost": 12.75
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 1.21,
+        "unit_cost": 4.85
+      },
+      {
+        "product_name": "Lemon Fresh 115 Count",
+        "quantity": 2,
+        "unit": "each",
+        "cost": 0.9,
+        "unit_cost": 0.45
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb",
+        "cost": 0.15,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Parsley Italian Fresh",
+        "quantity": 1,
+        "unit": "bunch",
+        "cost": 1.65,
+        "unit_cost": 1.65
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.03,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb",
+        "cost": 0.09,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 23.16,
+    "cost_per_serving": 5.79,
+    "instructions": "1. Season salmon with salt and pepper\n2. Preheat grill to medium-high\n3. Grill salmon skin-side down for 6-8 minutes\n4. Flip and cook for 4-5 minutes more\n5. Make lemon butter sauce with garlic and parsley\n6. Drizzle sauce over salmon and serve",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Spaghetti Carbonara": {
+    "recipe_id": "recipe_007",
+    "name": "Spaghetti Carbonara",
+    "description": "Classic Roman pasta with eggs, bacon, and Parmesan",
+    "category": "Main Course",
+    "cuisine": "Italian",
+    "servings": 4,
+    "prep_time": 10,
+    "cook_time": 20,
+    "ingredients": [
+      {
+        "product_name": "Pasta Spaghetti Dry",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Bacon Thick Cut Applewood",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Eggs Large Grade AA",
+        "quantity": 0.333,
+        "unit": "dozen"
+      },
+      {
+        "product_name": "Parmesan Cheese Grated",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.02,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Pasta Spaghetti Dry",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 1.15,
+        "unit_cost": 1.15
+      },
+      {
+        "product_name": "Bacon Thick Cut Applewood",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 2.93,
+        "unit_cost": 5.85
+      },
+      {
+        "product_name": "Eggs Large Grade AA",
+        "quantity": 0.333,
+        "unit": "dozen",
+        "cost": 0.95,
+        "unit_cost": 2.85
+      },
+      {
+        "product_name": "Parmesan Cheese Grated",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 4.48,
+        "unit_cost": 8.95
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.17,
+        "unit_cost": 8.5
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.03,
+        "unit_cost": 1.25
+      }
+    ],
+    "total_cost": 9.71,
+    "cost_per_serving": 2.43,
+    "instructions": "1. Cook spaghetti in salted boiling water until al dente\n2. Dice and cook bacon until crispy\n3. Whisk eggs with Parmesan and black pepper\n4. Reserve pasta water and drain pasta\n5. Toss hot pasta with bacon and fat\n6. Remove from heat and quickly mix in egg mixture\n7. Add pasta water to reach desired consistency\n8. Serve immediately with extra Parmesan",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Chicken Stir Fry": {
+    "recipe_id": "recipe_008",
+    "name": "Chicken Stir Fry",
+    "description": "Savory Asian-style chicken and vegetables over jasmine rice",
+    "category": "Main Course",
+    "cuisine": "Asian Fusion",
+    "servings": 4,
+    "prep_time": 20,
+    "cook_time": 15,
+    "ingredients": [
+      {
+        "product_name": "Chicken Breast Boneless Skinless",
+        "quantity": 1.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Rice Jasmine Long Grain",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Bell Pepper Red Fresh",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Onion Yellow Jumbo",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Ginger Fresh Root",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Soy Sauce Low Sodium",
+        "quantity": 0.015625,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Sesame Oil Toasted",
+        "quantity": 2,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Vegetable Oil Blend",
+        "quantity": 0.1,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Chicken Breast Boneless Skinless",
+        "quantity": 1.5,
+        "unit": "lb",
+        "cost": 4.88,
+        "unit_cost": 3.25
+      },
+      {
+        "product_name": "Rice Jasmine Long Grain",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 0.95,
+        "unit_cost": 0.95
+      },
+      {
+        "product_name": "Bell Pepper Red Fresh",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 1.23,
+        "unit_cost": 2.45
+      },
+      {
+        "product_name": "Onion Yellow Jumbo",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.38,
+        "unit_cost": 0.75
+      },
+      {
+        "product_name": "Ginger Fresh Root",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.35,
+        "unit_cost": 3.45
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.3,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Soy Sauce Low Sodium",
+        "quantity": 0.015625,
+        "unit": "gallon",
+        "cost": 0.14,
+        "unit_cost": 8.95
+      },
+      {
+        "product_name": "Sesame Oil Toasted",
+        "quantity": 2,
+        "unit": "oz",
+        "cost": 2.5,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Vegetable Oil Blend",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.22,
+        "unit_cost": 2.15
+      }
+    ],
+    "total_cost": 10.95,
+    "cost_per_serving": 2.74,
+    "instructions": "1. Cook rice according to package directions\n2. Dice chicken and season with salt\n3. Slice peppers and onions\n4. Mince ginger and garlic\n5. Heat wok or large pan with vegetable oil\n6. Stir-fry chicken until cooked through\n7. Add vegetables and cook until tender-crisp\n8. Add soy sauce and sesame oil\n9. Serve over jasmine rice",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Classic Burger": {
+    "recipe_id": "recipe_009",
+    "name": "Classic Burger",
+    "description": "Hand-formed beef patty with lettuce, tomato, and house sauce",
+    "category": "Main Course",
+    "cuisine": "American",
+    "servings": 4,
+    "prep_time": 15,
+    "cook_time": 12,
+    "ingredients": [
+      {
+        "product_name": "Ground Beef 80/20",
+        "quantity": 1.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Lettuce Romaine Hearts",
+        "quantity": 1,
+        "unit": "each"
+      },
+      {
+        "product_name": "Tomatoes Roma Fresh",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Onion Red Fresh",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.03,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.02,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Vegetable Oil Blend",
+        "quantity": 0.1,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Ground Beef 80/20",
+        "quantity": 1.5,
+        "unit": "lb",
+        "cost": 6.75,
+        "unit_cost": 4.5
+      },
+      {
+        "product_name": "Lettuce Romaine Hearts",
+        "quantity": 1,
+        "unit": "each",
+        "cost": 1.5,
+        "unit_cost": 1.5
+      },
+      {
+        "product_name": "Tomatoes Roma Fresh",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.93,
+        "unit_cost": 1.85
+      },
+      {
+        "product_name": "Onion Red Fresh",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 0.29,
+        "unit_cost": 1.15
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.03,
+        "unit": "lb",
+        "cost": 0.04,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.17,
+        "unit_cost": 8.5
+      },
+      {
+        "product_name": "Vegetable Oil Blend",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.22,
+        "unit_cost": 2.15
+      }
+    ],
+    "total_cost": 9.9,
+    "cost_per_serving": 2.48,
+    "instructions": "1. Form ground beef into 4 equal patties\n2. Season generously with salt and pepper\n3. Heat griddle or pan over high heat\n4. Cook burgers 4-5 minutes per side for medium\n5. Toast buns if using\n6. Assemble burgers with lettuce, tomato, and onion\n7. Serve immediately",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00",
+    "allergens": [
+      "peanuts",
+      "milk",
+      "fish",
+      "soybeans",
+      "sesame",
+      "tree_nuts",
+      "wheat",
+      "gluten",
+      "nightshades",
+      "corn",
+      "celery",
+      "mustard",
+      "soy",
+      "sulfites"
+    ],
+    "allergen_details": {
+      "peanuts": {
+        "allergen": "peanuts",
+        "display_name": "Peanuts",
+        "confidence": 100,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Ground Beef 80/20",
+            "match_type": "fuzzy",
+            "pattern": "groundnut",
+            "confidence": 72
+          },
+          {
+            "ingredient": "Black Pepper Ground",
+            "match_type": "fuzzy",
+            "pattern": "groundnut",
+            "confidence": 72
+          },
+          {
+            "ingredient": "Vegetable Oil Blend",
+            "match_type": "fuzzy",
+            "pattern": "peanut oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Peanuts",
+          "category": "legume",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\udd5c",
+          "description": "Contains peanuts or peanut products"
+        },
+        "sources": [
+          "database",
+          "manual"
+        ]
+      },
+      "milk": {
+        "allergen": "milk",
+        "display_name": "Milk/Dairy",
+        "confidence": 100,
+        "detection_method": "manual",
+        "sources": [
+          "manual"
+        ],
+        "matched_ingredients": [],
+        "metadata": {
+          "display_name": "Milk/Dairy",
+          "category": "dairy",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\udd5b",
+          "description": "Contains milk or dairy products"
+        }
+      },
+      "fish": {
+        "allergen": "fish",
+        "display_name": "Fish",
+        "confidence": 100,
+        "detection_method": "manual",
+        "sources": [
+          "manual"
+        ],
+        "matched_ingredients": [],
+        "metadata": {
+          "display_name": "Fish",
+          "category": "seafood",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83d\udc1f",
+          "description": "Contains fish or fish products"
+        }
+      },
+      "soybeans": {
+        "allergen": "soybeans",
+        "display_name": "Soy",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Vegetable Oil Blend",
+            "match_type": "fuzzy",
+            "pattern": "soybean oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Soy",
+          "category": "legume",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\uded8",
+          "description": "Contains soy or soybean products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "sesame": {
+        "allergen": "sesame",
+        "display_name": "Sesame",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Vegetable Oil Blend",
+            "match_type": "fuzzy",
+            "pattern": "sesame oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Sesame",
+          "category": "seed",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83c\udf31",
+          "description": "Contains sesame seeds or sesame products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "tree_nuts": {
+        "allergen": "tree_nuts",
+        "display_name": "Tree Nuts",
+        "confidence": 75,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Salt Kosher Diamond Crystal",
+            "match_type": "fuzzy",
+            "pattern": "almond",
+            "confidence": 75
+          },
+          {
+            "ingredient": "Vegetable Oil Blend",
+            "match_type": "fuzzy",
+            "pattern": "nut oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Tree Nuts",
+          "category": "nuts",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83c\udf30",
+          "description": "Contains tree nuts (almonds, walnuts, cashews, etc.)"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "wheat": {
+        "allergen": "wheat",
+        "display_name": "Wheat",
+        "confidence": 72,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Lettuce Romaine Hearts",
+            "match_type": "fuzzy",
+            "pattern": "wheat",
+            "confidence": 72
+          }
+        ],
+        "metadata": {
+          "display_name": "Wheat",
+          "category": "grain",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83c\udf3e",
+          "description": "Contains wheat or wheat products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "gluten": {
+        "allergen": "gluten",
+        "display_name": "Gluten",
+        "confidence": 100,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Lettuce Romaine Hearts",
+            "match_type": "fuzzy",
+            "pattern": "wheat",
+            "confidence": 72
+          },
+          {
+            "ingredient": "Salt Kosher Diamond Crystal",
+            "match_type": "fuzzy",
+            "pattern": "malt",
+            "confidence": 73
+          }
+        ],
+        "metadata": {
+          "display_name": "Gluten",
+          "category": "protein",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf3e",
+          "description": "Contains gluten (wheat, barley, rye)"
+        },
+        "sources": [
+          "database",
+          "manual"
+        ]
+      },
+      "nightshades": {
+        "allergen": "nightshades",
+        "display_name": "Nightshades",
+        "confidence": 100,
+        "detection_method": "database_exact",
+        "matched_ingredients": [
+          {
+            "ingredient": "Tomatoes Roma Fresh",
+            "match_type": "exact",
+            "confidence": 100
+          },
+          {
+            "ingredient": "Black Pepper Ground",
+            "match_type": "exact",
+            "confidence": 100
+          }
+        ],
+        "metadata": {
+          "display_name": "Nightshades",
+          "category": "vegetable",
+          "severity": "low",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf45",
+          "description": "Contains nightshade vegetables (tomatoes, peppers, eggplant)"
+        },
+        "sources": [
+          "database",
+          "ai"
+        ],
+        "ai_reason": "Tomatoes are nightshade vegetables"
+      },
+      "corn": {
+        "allergen": "corn",
+        "display_name": "Corn",
+        "confidence": 88,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Lettuce Romaine Hearts",
+            "match_type": "fuzzy",
+            "pattern": "maize",
+            "confidence": 72
+          },
+          {
+            "ingredient": "Vegetable Oil Blend",
+            "match_type": "fuzzy",
+            "pattern": "corn oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Corn",
+          "category": "grain",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf3d",
+          "description": "Contains corn or corn products"
+        },
+        "sources": [
+          "database",
+          "ai"
+        ],
+        "ai_reason": "Vegetable oil blend may contain corn oil"
+      },
+      "celery": {
+        "allergen": "celery",
+        "display_name": "Celery",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Salt Kosher Diamond Crystal",
+            "match_type": "fuzzy",
+            "pattern": "celery salt",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Celery",
+          "category": "vegetable",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83e\udd6c",
+          "description": "Contains celery or celery products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "mustard": {
+        "allergen": "mustard",
+        "display_name": "Mustard",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Vegetable Oil Blend",
+            "match_type": "fuzzy",
+            "pattern": "mustard oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Mustard",
+          "category": "spice",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf2d",
+          "description": "Contains mustard or mustard products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "soy": {
+        "allergen": "soy",
+        "display_name": "soy",
+        "confidence": 75,
+        "detection_method": "ai",
+        "reason": "Vegetable oil blend commonly contains soybean oil",
+        "matched_ingredients": [
+          {
+            "ingredient": "Vegetable Oil Blend"
+          }
+        ],
+        "metadata": {},
+        "sources": [
+          "ai"
+        ]
+      },
+      "sulfites": {
+        "allergen": "sulfites",
+        "display_name": "Sulfites",
+        "confidence": 73,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Lettuce Romaine Hearts",
+            "match_type": "fuzzy",
+            "pattern": "wine",
+            "confidence": 73
+          }
+        ],
+        "metadata": {
+          "display_name": "Sulfites",
+          "category": "preservative",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\u2697\ufe0f",
+          "description": "Contains sulfites or sulfur dioxide"
+        },
+        "sources": [
+          "database"
+        ]
+      }
+    },
+    "allergen_metadata": {
+      "detection_methods": [
+        "database",
+        "manual",
+        "ai"
+      ],
+      "last_updated": "2025-12-21T03:35:44.467637",
+      "total_detected": 14,
+      "fda_top_9_count": 7
+    }
+  },
+  "Fettuccine Alfredo": {
+    "recipe_id": "recipe_010",
+    "name": "Fettuccine Alfredo",
+    "description": "Creamy Parmesan sauce tossed with fresh fettuccine",
+    "category": "Main Course",
+    "cuisine": "Italian",
+    "servings": 4,
+    "prep_time": 10,
+    "cook_time": 15,
+    "ingredients": [
+      {
+        "product_name": "Pasta Fettuccine Fresh",
+        "quantity": 1.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 16,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Parmesan Cheese Grated",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Pasta Fettuccine Fresh",
+        "quantity": 1.5,
+        "unit": "lb",
+        "cost": 5.78,
+        "unit_cost": 3.85
+      },
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 16,
+        "unit": "oz",
+        "cost": 1.92,
+        "unit_cost": 0.12
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 1.21,
+        "unit_cost": 4.85
+      },
+      {
+        "product_name": "Parmesan Cheese Grated",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 4.48,
+        "unit_cost": 8.95
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb",
+        "cost": 0.15,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.03,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb",
+        "cost": 0.09,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 13.66,
+    "cost_per_serving": 3.42,
+    "instructions": "1. Cook fettuccine in salted boiling water until al dente\n2. Meanwhile, melt butter in large pan\n3. Add minced garlic and saut\u00c3\u00a9 briefly\n4. Add heavy cream and bring to simmer\n5. Whisk in Parmesan cheese until smooth\n6. Season with salt and pepper\n7. Toss drained pasta with sauce\n8. Serve immediately with extra Parmesan",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Pork Tenderloin": {
+    "recipe_id": "recipe_011",
+    "name": "Pork Tenderloin",
+    "description": "Herb-roasted pork tenderloin with garlic and rosemary",
+    "category": "Main Course",
+    "cuisine": "American",
+    "servings": 4,
+    "prep_time": 15,
+    "cook_time": 25,
+    "ingredients": [
+      {
+        "product_name": "Pork Tenderloin Whole",
+        "quantity": 1.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.03125,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.03,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.02,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Pork Tenderloin Whole",
+        "quantity": 1.5,
+        "unit": "lb",
+        "cost": 8.93,
+        "unit_cost": 5.95
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.3,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.03125,
+        "unit": "gallon",
+        "cost": 0.89,
+        "unit_cost": 28.5
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.03,
+        "unit": "lb",
+        "cost": 0.04,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.17,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 10.33,
+    "cost_per_serving": 2.58,
+    "instructions": "1. Preheat oven to 400\u00c2\u00b0F\n2. Season pork with salt and pepper\n3. Rub with minced garlic and olive oil\n4. Sear on all sides in hot pan\n5. Transfer to oven and roast 15-20 minutes\n6. Internal temperature should reach 145\u00c2\u00b0F\n7. Let rest 5 minutes before slicing",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Mushroom Risotto": {
+    "recipe_id": "recipe_012",
+    "name": "Mushroom Risotto",
+    "description": "Creamy Italian rice with saut\u00c3\u00a9ed mushrooms and Parmesan",
+    "category": "Main Course",
+    "cuisine": "Italian",
+    "servings": 4,
+    "prep_time": 10,
+    "cook_time": 30,
+    "ingredients": [
+      {
+        "product_name": "Rice Arborio Italian",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Mushrooms Button White",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Onion Yellow Jumbo",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Parmesan Cheese Grated",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.03125,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Rice Arborio Italian",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 1.85,
+        "unit_cost": 1.85
+      },
+      {
+        "product_name": "Mushrooms Button White",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 2.75,
+        "unit_cost": 2.75
+      },
+      {
+        "product_name": "Onion Yellow Jumbo",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.38,
+        "unit_cost": 0.75
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb",
+        "cost": 0.15,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 1.21,
+        "unit_cost": 4.85
+      },
+      {
+        "product_name": "Parmesan Cheese Grated",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 4.48,
+        "unit_cost": 8.95
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.03125,
+        "unit": "gallon",
+        "cost": 0.89,
+        "unit_cost": 28.5
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.02,
+        "unit": "lb",
+        "cost": 0.03,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.01,
+        "unit": "lb",
+        "cost": 0.09,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 11.83,
+    "cost_per_serving": 2.96,
+    "instructions": "1. Saut\u00c3\u00a9 mushrooms in olive oil until golden, set aside\n2. In same pan, cook onions and garlic until soft\n3. Add rice and toast for 1 minute\n4. Gradually add hot stock, stirring constantly\n5. Cook until rice is creamy and al dente (about 20 minutes)\n6. Stir in mushrooms, butter, and Parmesan\n7. Season with salt and pepper\n8. Let rest 2 minutes before serving",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Sausage Pasta": {
+    "recipe_id": "recipe_013",
+    "name": "Sausage Pasta",
+    "description": "Italian sausage with penne in a light tomato sauce",
+    "category": "Main Course",
+    "cuisine": "Italian",
+    "servings": 4,
+    "prep_time": 10,
+    "cook_time": 25,
+    "ingredients": [
+      {
+        "product_name": "Pasta Penne Rigate Dry",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Italian Sausage Links",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Tomatoes San Marzano Whole Peeled",
+        "quantity": 28,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Onion Yellow Jumbo",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.03125,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 1,
+        "unit": "bunch"
+      },
+      {
+        "product_name": "Parmesan Cheese Grated",
+        "quantity": 0.25,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Pasta Penne Rigate Dry",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 1.25,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Italian Sausage Links",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 4.25,
+        "unit_cost": 4.25
+      },
+      {
+        "product_name": "Tomatoes San Marzano Whole Peeled",
+        "quantity": 28,
+        "unit": "oz",
+        "cost": 3.36,
+        "unit_cost": 0.12
+      },
+      {
+        "product_name": "Onion Yellow Jumbo",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.38,
+        "unit_cost": 0.75
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.05,
+        "unit": "lb",
+        "cost": 0.15,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.03125,
+        "unit": "gallon",
+        "cost": 0.89,
+        "unit_cost": 28.5
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 1,
+        "unit": "bunch",
+        "cost": 2.5,
+        "unit_cost": 2.5
+      },
+      {
+        "product_name": "Parmesan Cheese Grated",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 2.24,
+        "unit_cost": 8.95
+      }
+    ],
+    "total_cost": 15.02,
+    "cost_per_serving": 3.76,
+    "instructions": "1. Cook pasta in salted boiling water until al dente\n2. Remove sausage from casings and brown in pan\n3. Add onions and garlic, cook until soft\n4. Crush tomatoes and add to pan\n5. Simmer sauce for 15 minutes\n6. Toss pasta with sauce\n7. Top with fresh basil and Parmesan",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Chocolate Lava Cake": {
+    "recipe_id": "recipe_014",
+    "name": "Chocolate Lava Cake",
+    "description": "Warm chocolate cake with a molten center",
+    "category": "Dessert",
+    "cuisine": "American",
+    "servings": 4,
+    "prep_time": 15,
+    "cook_time": 12,
+    "ingredients": [
+      {
+        "product_name": "Chocolate Dark 72% Cacao",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Eggs Large Grade AA",
+        "quantity": 0.333,
+        "unit": "dozen"
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Flour All Purpose Unbleached",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Vanilla Extract Pure",
+        "quantity": 1,
+        "unit": "oz"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Chocolate Dark 72% Cacao",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 3.98,
+        "unit_cost": 7.95
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 2.43,
+        "unit_cost": 4.85
+      },
+      {
+        "product_name": "Eggs Large Grade AA",
+        "quantity": 0.333,
+        "unit": "dozen",
+        "cost": 0.95,
+        "unit_cost": 2.85
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.33,
+        "unit_cost": 0.65
+      },
+      {
+        "product_name": "Flour All Purpose Unbleached",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 0.11,
+        "unit_cost": 0.45
+      },
+      {
+        "product_name": "Vanilla Extract Pure",
+        "quantity": 1,
+        "unit": "oz",
+        "cost": 1.25,
+        "unit_cost": 1.25
+      }
+    ],
+    "total_cost": 9.05,
+    "cost_per_serving": 2.26,
+    "instructions": "1. Preheat oven to 425\u00c2\u00b0F\n2. Butter and flour 4 ramekins\n3. Melt chocolate and butter together\n4. Whisk eggs with sugar until thick\n5. Fold in chocolate mixture and vanilla\n6. Gently fold in flour\n7. Divide batter among ramekins\n8. Bake 12-14 minutes until edges are firm\n9. Let cool 1 minute, then invert onto plates\n10. Serve immediately with ice cream",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Tiramisu": {
+    "recipe_id": "recipe_015",
+    "name": "Tiramisu",
+    "description": "Classic Italian dessert with espresso-soaked ladyfingers and mascarpone",
+    "category": "Dessert",
+    "cuisine": "Italian",
+    "servings": 8,
+    "prep_time": 30,
+    "cook_time": 0,
+    "ingredients": [
+      {
+        "product_name": "Eggs Large Grade AA",
+        "quantity": 0.5,
+        "unit": "dozen"
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 16,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Coffee Beans Arabica Premium",
+        "quantity": 0.25,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Eggs Large Grade AA",
+        "quantity": 0.5,
+        "unit": "dozen",
+        "cost": 1.43,
+        "unit_cost": 2.85
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.33,
+        "unit_cost": 0.65
+      },
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 16,
+        "unit": "oz",
+        "cost": 1.92,
+        "unit_cost": 0.12
+      },
+      {
+        "product_name": "Coffee Beans Arabica Premium",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 2.13,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 5.81,
+    "cost_per_serving": 0.73,
+    "instructions": "1. Brew strong espresso and let cool\n2. Separate eggs and beat yolks with sugar\n3. Fold in mascarpone cheese\n4. Whip cream to soft peaks and fold in\n5. Dip ladyfingers in espresso briefly\n6. Layer ladyfingers in dish\n7. Spread half the cream mixture\n8. Repeat layers\n9. Dust with cocoa powder\n10. Refrigerate 4 hours or overnight",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Cheesecake": {
+    "recipe_id": "recipe_016",
+    "name": "Cheesecake",
+    "description": "New York style cheesecake with graham cracker crust",
+    "category": "Dessert",
+    "cuisine": "American",
+    "servings": 10,
+    "prep_time": 25,
+    "cook_time": 60,
+    "ingredients": [
+      {
+        "product_name": "Eggs Large Grade AA",
+        "quantity": 0.417,
+        "unit": "dozen"
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Sour Cream",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Flour All Purpose Unbleached",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Vanilla Extract Pure",
+        "quantity": 2,
+        "unit": "oz"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Eggs Large Grade AA",
+        "quantity": 0.417,
+        "unit": "dozen",
+        "cost": 1.19,
+        "unit_cost": 2.85
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 0.65,
+        "unit_cost": 0.65
+      },
+      {
+        "product_name": "Sour Cream",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 2.95,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 2.43,
+        "unit_cost": 4.85
+      },
+      {
+        "product_name": "Flour All Purpose Unbleached",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.05,
+        "unit_cost": 0.45
+      },
+      {
+        "product_name": "Vanilla Extract Pure",
+        "quantity": 2,
+        "unit": "oz",
+        "cost": 2.5,
+        "unit_cost": 1.25
+      }
+    ],
+    "total_cost": 9.77,
+    "cost_per_serving": 0.98,
+    "instructions": "1. Preheat oven to 325\u00c2\u00b0F\n2. Make crust with graham crackers and butter\n3. Press into springform pan\n4. Beat cream cheese until smooth\n5. Add sugar, eggs, sour cream, flour, and vanilla\n6. Pour into crust\n7. Bake in water bath for 60-70 minutes\n8. Turn off oven and let cool inside for 1 hour\n9. Refrigerate overnight before serving",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Panna Cotta": {
+    "recipe_id": "recipe_017",
+    "name": "Panna Cotta",
+    "description": "Silky Italian cream dessert with berry compote",
+    "category": "Dessert",
+    "cuisine": "Italian",
+    "servings": 6,
+    "prep_time": 15,
+    "cook_time": 10,
+    "ingredients": [
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 24,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Milk Whole",
+        "quantity": 0.125,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Vanilla Extract Pure",
+        "quantity": 1,
+        "unit": "oz"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 24,
+        "unit": "oz",
+        "cost": 2.88,
+        "unit_cost": 0.12
+      },
+      {
+        "product_name": "Milk Whole",
+        "quantity": 0.125,
+        "unit": "gallon",
+        "cost": 0.53,
+        "unit_cost": 4.25
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.33,
+        "unit_cost": 0.65
+      },
+      {
+        "product_name": "Vanilla Extract Pure",
+        "quantity": 1,
+        "unit": "oz",
+        "cost": 1.25,
+        "unit_cost": 1.25
+      }
+    ],
+    "total_cost": 4.99,
+    "cost_per_serving": 0.83,
+    "instructions": "1. Bloom gelatin in cold water\n2. Heat cream, milk, and sugar until just simmering\n3. Remove from heat and whisk in gelatin\n4. Add vanilla extract\n5. Pour into ramekins or molds\n6. Refrigerate 4 hours or until set\n7. Serve with fresh berries or compote",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Espresso": {
+    "recipe_id": "recipe_018",
+    "name": "Espresso",
+    "description": "Premium double shot espresso",
+    "category": "Beverage",
+    "cuisine": "Italian",
+    "servings": 1,
+    "prep_time": 2,
+    "cook_time": 1,
+    "ingredients": [
+      {
+        "product_name": "Coffee Beans Arabica Premium",
+        "quantity": 0.04,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Coffee Beans Arabica Premium",
+        "quantity": 0.04,
+        "unit": "lb",
+        "cost": 0.34,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 0.34,
+    "cost_per_serving": 0.34,
+    "instructions": "1. Grind fresh coffee beans to espresso fineness\n2. Tamp grounds in portafilter\n3. Extract for 25-30 seconds\n4. Serve immediately",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Cappuccino": {
+    "recipe_id": "recipe_019",
+    "name": "Cappuccino",
+    "description": "Classic Italian coffee with steamed milk and foam",
+    "category": "Beverage",
+    "cuisine": "Italian",
+    "servings": 1,
+    "prep_time": 3,
+    "cook_time": 2,
+    "ingredients": [
+      {
+        "product_name": "Coffee Beans Arabica Premium",
+        "quantity": 0.04,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Milk Whole",
+        "quantity": 0.015625,
+        "unit": "gallon"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Coffee Beans Arabica Premium",
+        "quantity": 0.04,
+        "unit": "lb",
+        "cost": 0.34,
+        "unit_cost": 8.5
+      },
+      {
+        "product_name": "Milk Whole",
+        "quantity": 0.015625,
+        "unit": "gallon",
+        "cost": 0.07,
+        "unit_cost": 4.25
+      }
+    ],
+    "total_cost": 0.41,
+    "cost_per_serving": 0.41,
+    "instructions": "1. Pull double shot of espresso\n2. Steam milk to 150-155\u00c2\u00b0F\n3. Pour steamed milk into espresso\n4. Top with foam\n5. Optional: dust with cocoa powder",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Iced Coffee": {
+    "recipe_id": "recipe_020",
+    "name": "Iced Coffee",
+    "description": "Cold-brewed coffee over ice with cream",
+    "category": "Beverage",
+    "cuisine": "American",
+    "servings": 1,
+    "prep_time": 5,
+    "cook_time": 0,
+    "ingredients": [
+      {
+        "product_name": "Coffee Beans Arabica Premium",
+        "quantity": 0.06,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 2,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.03,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Coffee Beans Arabica Premium",
+        "quantity": 0.06,
+        "unit": "lb",
+        "cost": 0.51,
+        "unit_cost": 8.5
+      },
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 2,
+        "unit": "oz",
+        "cost": 0.24,
+        "unit_cost": 0.12
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.03,
+        "unit": "lb",
+        "cost": 0.02,
+        "unit_cost": 0.65
+      }
+    ],
+    "total_cost": 0.77,
+    "cost_per_serving": 0.77,
+    "instructions": "1. Brew coffee double strength\n2. Let cool to room temperature\n3. Fill glass with ice\n4. Pour coffee over ice\n5. Add cream and sugar to taste\n6. Stir and serve",
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  "Soy-Ginger Fried Chicken": {
+    "name": "Soy-Ginger Fried Chicken",
+    "description": "Crispy fried chicken marinated in soy-ginger sauce, served with fresh lemon wedges and scallions",
+    "servings": 10,
+    "prep_time": 45,
+    "cook_time": 25,
+    "category": "Main Course",
+    "instructions": "1. Combine soy sauce, minced ginger, minced garlic, rice vinegar, and brown sugar to make marinade. 2. Cut chicken thighs into 5 oz portions and marinate for 30 minutes. 3. Mix flour, cornstarch, baking powder, salt, pepper, paprika, and garlic powder in large bowl. 4. Remove chicken from marinade and dip in buttermilk, then coat thoroughly in seasoned flour mixture. 5. Heat oil to 350\u00b0F in deep fryer or heavy pot. 6. Fry chicken pieces in batches for 12-15 minutes until golden brown and internal temperature reaches 165\u00b0F. 7. Drain on wire rack for 2 minutes. 8. Cut lemons into wedges and slice scallions thinly. 9. Serve immediately with lemon wedges and garnish with sliced scallions.",
+    "ingredients": [
+      {
+        "product_name": "Chicken Breast Boneless Skinless",
+        "quantity": 2.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Soy Sauce Low Sodium",
+        "quantity": 0.031,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Ginger Fresh Root",
+        "quantity": 0.062,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.031,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Rice Jasmine Long Grain",
+        "quantity": 0.062,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Brown Sugar Light",
+        "quantity": 0.031,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Flour All Purpose Unbleached",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.031,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.008,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Vegetable Oil Blend",
+        "quantity": 4.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Lemon Fresh 115 Count",
+        "quantity": 12.0,
+        "unit": "each"
+      }
+    ],
+    "recipe_id": "55e0cfc3-51fa-4dfd-9844-6acad15baf11",
+    "total_cost": 23.1434,
+    "ingredient_costs": [
+      {
+        "product_name": "Chicken Breast Boneless Skinless",
+        "quantity": 2.5,
+        "unit": "lb",
+        "cost": 8.125,
+        "unit_cost": 3.25
+      },
+      {
+        "product_name": "Soy Sauce Low Sodium",
+        "quantity": 0.031,
+        "unit": "gallon",
+        "cost": 0.27745,
+        "unit_cost": 8.95
+      },
+      {
+        "product_name": "Ginger Fresh Root",
+        "quantity": 0.062,
+        "unit": "lb",
+        "cost": 0.2139,
+        "unit_cost": 3.45
+      },
+      {
+        "product_name": "Garlic Fresh Peeled",
+        "quantity": 0.031,
+        "unit": "lb",
+        "cost": 0.09145,
+        "unit_cost": 2.95
+      },
+      {
+        "product_name": "Rice Jasmine Long Grain",
+        "quantity": 0.062,
+        "unit": "lb",
+        "cost": 0.058899999999999994,
+        "unit_cost": 0.95
+      },
+      {
+        "product_name": "Brown Sugar Light",
+        "quantity": 0.031,
+        "unit": "lb",
+        "cost": 0.04495,
+        "unit_cost": 1.45
+      },
+      {
+        "product_name": "Flour All Purpose Unbleached",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.225,
+        "unit_cost": 0.45
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.031,
+        "unit": "lb",
+        "cost": 0.03875,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.008,
+        "unit": "lb",
+        "cost": 0.068,
+        "unit_cost": 8.5
+      },
+      {
+        "product_name": "Vegetable Oil Blend",
+        "quantity": 4.0,
+        "unit": "lb",
+        "cost": 8.6,
+        "unit_cost": 2.15
+      },
+      {
+        "product_name": "Lemon Fresh 115 Count",
+        "quantity": 12.0,
+        "unit": "each",
+        "cost": 5.4,
+        "unit_cost": 0.45
+      }
+    ],
+    "created_at": "2025-12-16T02:24:20.225066",
+    "updated_at": "2025-12-16T02:24:20.225066"
+  },
+  "Spicy Tomato Soup": {
+    "name": "Spicy Tomato Soup",
+    "description": "Rich and creamy tomato soup with a bold spicy kick, perfect for warming up any meal",
+    "servings": 12,
+    "prep_time": 15,
+    "cook_time": 45,
+    "category": "Soup",
+    "instructions": "1. Heat olive oil in large pot over medium heat. 2. Dice onion and mince garlic, then saut\u00e9 until onion is translucent, about 5 minutes. 3. Add tomato paste and cook for 2 minutes, stirring constantly. 4. Add crushed tomatoes, vegetable stock, cayenne pepper, paprika, red pepper flakes, salt, black pepper, and sugar. 5. Bring mixture to a boil, then reduce heat and simmer for 30 minutes. 6. Using immersion blender, blend soup until smooth consistency is achieved. 7. Stir in heavy cream and chopped fresh basil. 8. Simmer for additional 5 minutes. 9. Taste and adjust seasoning as needed. 10. Serve hot in 8 oz portions.",
+    "ingredients": [
+      {
+        "product_name": "Tomatoes San Marzano Whole Peeled",
+        "quantity": 56.0,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Onion Yellow Jumbo",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 8.0,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.016,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Bell Pepper Red Fresh",
+        "quantity": 0.006,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.031,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.006,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.031,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 0.5,
+        "unit": "bunch"
+      }
+    ],
+    "recipe_id": "e5e3b03b-2bcc-4120-a33b-bc2b2dba825a",
+    "total_cost": 9.885599999999998,
+    "ingredient_costs": [
+      {
+        "product_name": "Tomatoes San Marzano Whole Peeled",
+        "quantity": 56.0,
+        "unit": "oz",
+        "cost": 6.72,
+        "unit_cost": 0.12
+      },
+      {
+        "product_name": "Onion Yellow Jumbo",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.375,
+        "unit_cost": 0.75
+      },
+      {
+        "product_name": "Heavy Cream 36%",
+        "quantity": 8.0,
+        "unit": "oz",
+        "cost": 0.96,
+        "unit_cost": 0.12
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.016,
+        "unit": "gallon",
+        "cost": 0.456,
+        "unit_cost": 28.5
+      },
+      {
+        "product_name": "Bell Pepper Red Fresh",
+        "quantity": 0.006,
+        "unit": "lb",
+        "cost": 0.014700000000000001,
+        "unit_cost": 2.45
+      },
+      {
+        "product_name": "Salt Kosher Diamond Crystal",
+        "quantity": 0.031,
+        "unit": "lb",
+        "cost": 0.03875,
+        "unit_cost": 1.25
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.006,
+        "unit": "lb",
+        "cost": 0.051000000000000004,
+        "unit_cost": 8.5
+      },
+      {
+        "product_name": "Sugar Granulated White",
+        "quantity": 0.031,
+        "unit": "lb",
+        "cost": 0.02015,
+        "unit_cost": 0.65
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 0.5,
+        "unit": "bunch",
+        "cost": 1.25,
+        "unit_cost": 2.5
+      }
+    ],
+    "created_at": "2025-12-19T00:59:44.490475",
+    "updated_at": "2025-12-19T00:59:44.490475"
+  }
+}

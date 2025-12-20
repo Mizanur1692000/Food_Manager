@@ -1,0 +1,212 @@
+{
+  "ingredient_patterns": {
+    "milk": [
+      "milk", "cream", "butter", "cheese", "yogurt", "whey", "casein", "lactose",
+      "curd", "custard", "ghee", "half and half", "sour cream", "ice cream",
+      "buttermilk", "condensed milk", "evaporated milk", "malted milk", "nougat",
+      "pudding", "ricotta", "mozzarella", "cheddar", "parmesan", "brie", "gouda",
+      "feta", "cottage cheese", "cream cheese", "mascarpone", "dairy"
+    ],
+    "eggs": [
+      "egg", "eggs", "mayonnaise", "mayo", "meringue", "albumin", "egg white",
+      "egg yolk", "ovomucin", "ovalbumin", "lysozyme", "lecithin", "eggnog",
+      "hollandaise", "custard", "quiche", "aioli", "caesar dressing"
+    ],
+    "fish": [
+      "fish", "salmon", "tuna", "cod", "halibut", "bass", "trout", "tilapia",
+      "mahi mahi", "snapper", "anchovy", "anchovies", "sardine", "herring",
+      "mackerel", "fish sauce", "worcestershire", "caviar", "roe", "surimi"
+    ],
+    "shellfish": [
+      "shellfish", "shrimp", "crab", "lobster", "crayfish", "prawns", "crawfish",
+      "clam", "mussel", "oyster", "scallop", "squid", "octopus", "calamari",
+      "cuttlefish", "seafood", "crustacean", "mollusks"
+    ],
+    "tree_nuts": [
+      "almond", "cashew", "walnut", "pecan", "pistachio", "hazelnut", "macadamia",
+      "brazil nut", "pine nut", "chestnut", "beechnut", "butternut", "hickory nut",
+      "nut", "nuts", "gianduja", "marzipan", "nougat", "praline", "nut butter",
+      "nut oil", "nut flour", "nut paste"
+    ],
+    "peanuts": [
+      "peanut", "peanuts", "peanut butter", "peanut oil", "groundnut", "goober",
+      "monkey nut", "arachis oil", "beer nuts", "mixed nuts"
+    ],
+    "wheat": [
+      "wheat", "flour", "bread", "pasta", "noodle", "couscous", "bulgur", "semolina",
+      "spelt", "farro", "durum", "einkorn", "kamut", "wheat germ", "wheat bran",
+      "wheat starch", "bread crumbs", "croutons", "all purpose flour", "whole wheat",
+      "wheat flour", "enriched flour", "white flour"
+    ],
+    "soybeans": [
+      "soy", "soya", "soybean", "tofu", "edamame", "miso", "tempeh", "soy sauce",
+      "tamari", "soy milk", "soy protein", "soy lecithin", "textured vegetable protein",
+      "tvp", "hydrolyzed soy protein", "soy flour", "soybean oil", "shoyu"
+    ],
+    "sesame": [
+      "sesame", "sesame seed", "sesame oil", "tahini", "sesamol", "sesamolin",
+      "benne seed", "gingelly", "til", "hummus"
+    ],
+    "gluten": [
+      "gluten", "wheat", "barley", "rye", "malt", "brewer's yeast", "oats",
+      "triticale", "wheat flour", "bread flour", "cake flour", "pastry flour",
+      "seitan", "vital wheat gluten"
+    ],
+    "corn": [
+      "corn", "maize", "cornmeal", "cornstarch", "corn syrup", "high fructose corn syrup",
+      "corn oil", "popcorn", "hominy", "polenta", "grits", "masa", "corn flour",
+      "dextrin", "maltodextrin", "dextrose"
+    ],
+    "sulfites": [
+      "sulfite", "sulfur dioxide", "sodium sulfite", "sodium bisulfite",
+      "potassium bisulfite", "sodium metabisulfite", "potassium metabisulfite",
+      "wine", "dried fruit", "dried apricot", "dried cranberry", "vinegar",
+      "pickled", "preserved"
+    ],
+    "nightshades": [
+      "tomato", "potato", "eggplant", "pepper", "bell pepper", "chili", "paprika",
+      "cayenne", "jalapeño", "capsicum", "goji berry", "tomatillo", "tobacco"
+    ],
+    "mustard": [
+      "mustard", "mustard seed", "mustard powder", "dijon", "yellow mustard",
+      "mustard oil", "mustard greens"
+    ],
+    "celery": [
+      "celery", "celeriac", "celery seed", "celery salt", "celery root"
+    ],
+    "lupin": [
+      "lupin", "lupine", "lupin flour", "lupin bean"
+    ]
+  },
+  "allergen_metadata": {
+    "milk": {
+      "display_name": "Milk/Dairy",
+      "category": "dairy",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🥛",
+      "description": "Contains milk or dairy products"
+    },
+    "eggs": {
+      "display_name": "Eggs",
+      "category": "animal_product",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🥚",
+      "description": "Contains eggs or egg products"
+    },
+    "fish": {
+      "display_name": "Fish",
+      "category": "seafood",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🐟",
+      "description": "Contains fish or fish products"
+    },
+    "shellfish": {
+      "display_name": "Shellfish",
+      "category": "seafood",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🦐",
+      "description": "Contains shellfish or crustacean products"
+    },
+    "tree_nuts": {
+      "display_name": "Tree Nuts",
+      "category": "nuts",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🌰",
+      "description": "Contains tree nuts (almonds, walnuts, cashews, etc.)"
+    },
+    "peanuts": {
+      "display_name": "Peanuts",
+      "category": "legume",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🥜",
+      "description": "Contains peanuts or peanut products"
+    },
+    "wheat": {
+      "display_name": "Wheat",
+      "category": "grain",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🌾",
+      "description": "Contains wheat or wheat products"
+    },
+    "soybeans": {
+      "display_name": "Soy",
+      "category": "legume",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🫘",
+      "description": "Contains soy or soybean products"
+    },
+    "sesame": {
+      "display_name": "Sesame",
+      "category": "seed",
+      "severity": "high",
+      "fda_top_9": true,
+      "icon": "🌱",
+      "description": "Contains sesame seeds or sesame products"
+    },
+    "gluten": {
+      "display_name": "Gluten",
+      "category": "protein",
+      "severity": "medium",
+      "fda_top_9": false,
+      "icon": "🌾",
+      "description": "Contains gluten (wheat, barley, rye)"
+    },
+    "corn": {
+      "display_name": "Corn",
+      "category": "grain",
+      "severity": "medium",
+      "fda_top_9": false,
+      "icon": "🌽",
+      "description": "Contains corn or corn products"
+    },
+    "sulfites": {
+      "display_name": "Sulfites",
+      "category": "preservative",
+      "severity": "medium",
+      "fda_top_9": false,
+      "icon": "⚗️",
+      "description": "Contains sulfites or sulfur dioxide"
+    },
+    "nightshades": {
+      "display_name": "Nightshades",
+      "category": "vegetable",
+      "severity": "low",
+      "fda_top_9": false,
+      "icon": "🍅",
+      "description": "Contains nightshade vegetables (tomatoes, peppers, eggplant)"
+    },
+    "mustard": {
+      "display_name": "Mustard",
+      "category": "spice",
+      "severity": "medium",
+      "fda_top_9": false,
+      "icon": "🌭",
+      "description": "Contains mustard or mustard products"
+    },
+    "celery": {
+      "display_name": "Celery",
+      "category": "vegetable",
+      "severity": "medium",
+      "fda_top_9": false,
+      "icon": "🥬",
+      "description": "Contains celery or celery products"
+    },
+    "lupin": {
+      "display_name": "Lupin",
+      "category": "legume",
+      "severity": "medium",
+      "fda_top_9": false,
+      "icon": "🌿",
+      "description": "Contains lupin or lupin flour"
+    }
+  }
+}
+
