@@ -136,8 +136,7 @@ Before installing the application, ensure you have the following system dependen
 
 ```bash
 # Clone the repository
-git clone https://github.com/jkatz015/restaurant_inventory_app.git
-cd restaurant_inventory_app
+git remote add origin https://github.com/Mizanur1692000/Food_Manager.git
 
 # Create and activate virtual environment (recommended)
 python -m venv venv
@@ -170,6 +169,9 @@ source venv_fresh/bin/activate  # On Windows: venv_fresh\Scripts\activate
 # Start the Streamlit application
 streamlit run app.py
 ```
+# Start the Streamlit application for both streamlit and fastapi
+
+python run_all.py
 
 The app will open in your browser at `http://localhost:8501`
 
