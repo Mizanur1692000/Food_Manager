@@ -16,74 +16,54 @@ def print_response(response):
         print(response.text)
     print("-" * 30 + "\n")
 
-def test_generate_ai_recipe(prompt, save=False):
-    """Simulates POST /recipes/generate-ai"""
-    print(f"--- Running: Generate AI Recipe (Save: {save}) ---")
-    url = f"{BASE_URL}/recipes/generate-ai?save={str(save).lower()}"
-    payload = {
-        "prompt": prompt,
-        "match_threshold": 75
-    }
+def test_generate_ai_recipe(prompt):
+    """Call active AI recipe endpoint: POST /recipes/generate"""
+    print("--- Running: Generate AI Recipe ---")
+    url = f"{BASE_URL}/recipes/generate"
+    payload = {"prompt": prompt, "match_threshold": 75}
     try:
         response = requests.post(url, json=payload)
         print_response(response)
     except requests.exceptions.ConnectionError as e:
         print(f"❌ Connection Error: Is the API server running? ({e})")
 
-def test_analyze_recipe_allergens(recipe_name, save=False):
-    """Simulates POST /allergens/analyze-recipe"""
-    print(f"--- Running: Analyze Recipe Allergens (Save: {save}) ---")
-    url = f"{BASE_URL}/allergens/analyze-recipe?save={str(save).lower()}"
-    payload = {
-        "recipe_name": recipe_name,
-        "db_confidence": 70
-    }
+def test_analyze_allergens(ingredients):
+    """Call active allergen endpoint: POST /allergens/analyze"""
+    print("--- Running: Analyze Allergens ---")
+    url = f"{BASE_URL}/allergens/analyze"
     try:
-        response = requests.post(url, json=payload)
+        response = requests.post(url, json=ingredients)
         print_response(response)
     except requests.exceptions.ConnectionError as e:
         print(f"❌ Connection Error: Is the API server running? ({e})")
 
-def test_generate_qr_code(recipe_name):
-    """Simulates POST /allergens/generate-qr"""
-    print("--- Running: Generate Allergen QR Code ---")
-    url = f"{BASE_URL}/allergens/generate-qr"
-    payload = {
-        "recipe_name": recipe_name,
-        "base_url": "http://example.com"
-    }
-    try:
-        response = requests.post(url, json=payload)
-        print_response(response)
-    except requests.exceptions.ConnectionError as e:
-        print(f"❌ Connection Error: Is the API server running? ({e})")
+# Note: legacy QR/recipe-level endpoints are disabled. Use /allergens/analyze.
 
 def main():
     parser = argparse.ArgumentParser(description="AI API Test Runner for Food Manager")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    # Sub-parser for generating a recipe
+    # Sub-parser for generating a recipe (AI)
     parser_gen = subparsers.add_parser("generate_recipe", help="Generate a recipe using AI")
     parser_gen.add_argument("prompt", help="The text prompt for the AI recipe generator")
-    parser_gen.add_argument("--save", action="store_true", help="Save the generated recipe to the database")
 
-    # Sub-parser for analyzing allergens
-    parser_analyze = subparsers.add_parser("analyze_allergens", help="Analyze a recipe for allergens")
-    parser_analyze.add_argument("recipe_name", help="The name of the recipe to analyze")
-    parser_analyze.add_argument("--save", action="store_true", help="Save the allergen data to the recipe")
+    # Sub-parser for analyzing allergens (ingredient list)
+    parser_analyze = subparsers.add_parser("analyze_allergens", help="Analyze ingredients for allergens")
+    parser_analyze.add_argument("ingredients_json", help="JSON array of ingredients (product_name, quantity, unit)")
     
-    # Sub-parser for generating a QR code
-    parser_qr = subparsers.add_parser("generate_qr", help="Generate a QR code for a recipe's allergen report")
-    parser_qr.add_argument("recipe_name", help="The name of the recipe for the QR code")
+    # Legacy QR endpoint removed from active API; no CLI command.
 
     args = parser.parse_args()
 
     if args.command == "generate_recipe":
-        test_generate_ai_recipe(args.prompt, args.save)
+        test_generate_ai_recipe(args.prompt)
     elif args.command == "analyze_allergens":
-        test_analyze_recipe_allergens(args.recipe_name, args.save)
-    elif args.command == "generate_qr":
-        test_generate_qr_code(args.recipe_name)
+        try:
+            ingredients = json.loads(args.ingredients_json)
+        except json.JSONDecodeError:
+            print("Invalid JSON for ingredients. Provide a JSON array.")
+            return
+        test_analyze_allergens(ingredients)
 
 if __name__ == "__main__":
     # First, ensure 'requests' is installed

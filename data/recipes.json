@@ -512,7 +512,67 @@
     "cost_per_serving": 2.25,
     "instructions": "1. Slice tomatoes and mozzarella into rounds\n2. Arrange alternating slices on plate\n3. Tuck basil leaves between slices\n4. Drizzle with olive oil\n5. Season with salt and pepper",
     "created_at": "2025-10-27T00:00:00",
-    "updated_at": "2025-10-27T00:00:00"
+    "updated_at": "2025-10-27T00:00:00",
+    "allergens": [
+      "milk",
+      "nightshades"
+    ],
+    "allergen_details": {
+      "milk": {
+        "allergen": "milk",
+        "display_name": "Milk/Dairy",
+        "confidence": 100,
+        "detection_method": "ai",
+        "reason": "Contains mozzarella cheese, which is a dairy product made from milk",
+        "matched_ingredients": [
+          {
+            "ingredient": "Mozzarella Cheese Shredded"
+          }
+        ],
+        "metadata": {
+          "display_name": "Milk/Dairy",
+          "category": "dairy",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\udd5b",
+          "description": "Contains milk or dairy products"
+        },
+        "sources": [
+          "ai"
+        ]
+      },
+      "nightshades": {
+        "allergen": "nightshades",
+        "display_name": "Nightshades",
+        "confidence": 100,
+        "detection_method": "ai",
+        "reason": "Contains tomatoes, which are part of the nightshade family",
+        "matched_ingredients": [
+          {
+            "ingredient": "Tomatoes Roma Fresh"
+          }
+        ],
+        "metadata": {
+          "display_name": "Nightshades",
+          "category": "vegetable",
+          "severity": "low",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf45",
+          "description": "Contains nightshade vegetables (tomatoes, peppers, eggplant)"
+        },
+        "sources": [
+          "ai"
+        ]
+      }
+    },
+    "allergen_metadata": {
+      "detection_methods": [
+        "ai"
+      ],
+      "last_updated": "2026-01-18T04:50:50.216414",
+      "total_detected": 2,
+      "fda_top_9_count": 1
+    }
   },
   "Grilled Salmon": {
     "recipe_id": "recipe_006",
@@ -2505,5 +2565,31 @@
     "ingredient_costs": [],
     "created_at": "2026-01-18T01:42:23.968700",
     "updated_at": "2026-01-18T01:42:23.968700"
+  },
+  "Shrimp Tacos": {
+    "name": "Shrimp Tacos",
+    "description": "Spicy and tangy tacos",
+    "servings": 6,
+    "prep_time": 20,
+    "cook_time": 10,
+    "category": "Main Course",
+    "instructions": "1. Prep shrimp\n2. Cook\n3. Assemble",
+    "ingredients": [
+      {
+        "product_name": "Shrimp",
+        "quantity": 24,
+        "unit": "oz"
+      },
+      {
+        "product_name": "Cabbage",
+        "quantity": 16,
+        "unit": "oz"
+      }
+    ],
+    "recipe_id": "3c5cb36d-2b29-4bdf-84d0-f3f1bb3ec76e",
+    "total_cost": 0,
+    "ingredient_costs": [],
+    "created_at": "2026-01-18T05:41:00.939967",
+    "updated_at": "2026-01-18T05:41:00.939967"
   }
 }

@@ -6,30 +6,19 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 # Importing existing business logic
-from modules import product_manager, recipe_engine, inventory_engine, variance_engine, allergen_engine
+from modules import product_manager, allergen_engine
+from modules import ai_recipe_service as ai_gen
+from modules import recipe_engine
 import importlib.util
 import sys
 from pathlib import Path
 
 def import_page_module(page_name: str):
-    """Dynamically imports a module from the 'pages' directory."""
-    try:
-        file_path = Path(__file__).parent / "pages" / f"{page_name}.py"
-        spec = importlib.util.spec_from_file_location(page_name, file_path)
-        if spec and spec.loader:
-            module = importlib.util.module_from_spec(spec)
-            sys.modules[page_name] = module
-            spec.loader.exec_module(module)
-            return module
-        else:
-            raise ImportError(f"Could not create module spec for {page_name}")
-    except Exception as e:
-        print(f"Error importing page module {page_name}: {e}", file=sys.stderr)
-        return None
+    # Deprecated: Streamlit pages removed in API-only mode
+    return None
 
 # Lazy-loaded AI recipe generator module
 recipe_generator = None
-allergen_management = import_page_module("7_AllergenManagement")
 from models.recipe_schema import RecipeSchema
 from models.recipe_schema import validate_recipe_dict
 from utils.shared_functions import load_json_file
@@ -55,14 +44,8 @@ async def general_exception_handler(request, exc):
 
 # --- Helper Functions ---
 def load_recipe_generator_module():
-    """Ensure the AI recipe generator page module is imported after SDK checks."""
-    global recipe_generator
-    if recipe_generator is not None:
-        return recipe_generator
-    # Try importing dynamically; this can fail if dependencies (e.g., anthropic) are missing
-    mod = import_page_module("6_AI_Recipe_Generator")
-    recipe_generator = mod
-    return recipe_generator
+    # Deprecated: using modules.ai_recipe_service directly
+    return ai_gen
 
 def app_recipe_to_schema(recipe: Dict[str, Any]) -> Dict[str, Any]:
     """Convert the app-format recipe dict into RecipeSchema-compatible dict."""
@@ -230,7 +213,7 @@ async def generate_recipe_unified(payload: AIRecipeRequest) -> Dict[str, Any]:
 
     # Load AI module lazily and verify functions
     gen = load_recipe_generator_module()
-    if not gen or not hasattr(gen, 'call_claude_for_recipe') or not hasattr(gen, 'convert_ai_recipe_to_app_format'):
+    if not gen:
         raise HTTPException(status_code=501, detail="AI recipe generator functions not available.")
 
     # Call AI
@@ -245,17 +228,25 @@ async def generate_recipe_unified(payload: AIRecipeRequest) -> Dict[str, Any]:
 
     # Convert to app format
     match_threshold = payload.match_threshold or 75
-    recipe_data, mapping_notes = gen.convert_ai_recipe_to_app_format(
-        ai_recipe, products_df, match_threshold
-    )
+    recipe_data, mapping_notes = gen.convert_ai_recipe_to_app_format(ai_recipe, products_df, match_threshold)
 
     # Validate to support review & edit flows in other frontends
     schema_dict = app_recipe_to_schema(recipe_data)
     ok, validated, errors = validate_recipe_dict(schema_dict)
 
+    mapped_count = sum(1 for note in mapping_notes if (note.get("score", 0) or 0) > 0)
+    total_notes = len(mapping_notes)
+    unmapped_count = max(0, total_notes - mapped_count)
+    match_rate = round((mapped_count / total_notes * 100.0) if total_notes else 0.0, 2)
+
     return {
         "generated_recipe": recipe_data,
         "mapping_notes": mapping_notes,
+        "mapping_summary": {
+            "mapped": mapped_count,
+            "unmapped": unmapped_count,
+            "match_rate": match_rate
+        },
         "ai_raw_recipe": ai_recipe,
         "validation": {"valid": ok, "errors": errors}
     }
@@ -265,9 +256,9 @@ async def generate_recipe_unified(payload: AIRecipeRequest) -> Dict[str, Any]:
 async def generate_recipe_ai_alias(payload: AIRecipeRequest):
     return await generate_recipe_unified(payload)
 
-# --- Review & Edit Endpoints (Backend) ---
-if feature_enabled("recipes"):
-    @app.post("/recipes/validate-app", tags=["Recipes"], summary="Validate an app-format recipe")
+# --- Review & Edit Endpoints (Backend, AI flows) ---
+if feature_enabled("ai_recipe"):
+    @app.post("/recipes/validate-app", tags=["AI"], summary="Validate an app-format recipe")
     async def validate_app_recipe(recipe: Dict[str, Any] = Body(..., example={
         "name": "Shrimp Tacos",
         "description": "Spicy and tangy tacos",
@@ -293,7 +284,7 @@ if feature_enabled("recipes"):
             "normalized_recipe": validated.dict() if ok and validated else schema_dict
         }
 
-    @app.post("/recipes/save-app", tags=["Recipes"], summary="Save an app-format recipe")
+    @app.post("/recipes/save-app", tags=["AI"], summary="Save an app-format recipe")
     async def save_app_recipe(recipe: Dict[str, Any] = Body(..., example={
         "name": "Shrimp Tacos",
         "description": "Spicy and tangy tacos",
@@ -359,6 +350,79 @@ if feature_enabled("allergen"):
             "ai_analysis": ai_results,
             "combined_summary": combined_results
         }
+
+    @app.post("/allergens/analyze-recipe", tags=["Allergens"], summary="Analyze a saved recipe for allergens")
+    async def analyze_recipe_allergens(payload: Dict[str, Any] = Body(..., example={
+        "recipe_name": "Shrimp Tacos",
+        "db_confidence": 70,
+        "save": False
+    })) -> Dict[str, Any]:
+        recipe_name = str(payload.get("recipe_name", "")).strip()
+        db_confidence = int(payload.get("db_confidence", 70) or 70)
+        do_save = bool(payload.get("save", False))
+        if not recipe_name:
+            raise HTTPException(status_code=400, detail="`recipe_name` is required.")
+
+        recipes = recipe_engine.load_recipes()
+        recipe = recipes.get(recipe_name)
+        if not recipe:
+            raise HTTPException(status_code=404, detail=f"Recipe '{recipe_name}' not found.")
+
+        ingredients = recipe.get("ingredients", [])
+
+        db_results = allergen_engine.detect_allergens_database(ingredients, min_confidence=db_confidence)
+        is_ok, api_key, message = require_anthropic_key()
+        if not is_ok:
+            raise HTTPException(status_code=400, detail=f"Cannot perform AI analysis: {message}")
+        ai_results = allergen_engine.detect_allergens_ai(ingredients, api_key, recipe_name=recipe_name)
+        combined = allergen_engine.combine_allergen_detections(db_results, ai_results, None)
+
+        report = allergen_engine.generate_allergen_report(recipe_name, combined, ingredients)
+
+        if do_save:
+            allergen_engine.save_allergen_data(recipe_name, combined)
+
+        return {
+            "database_analysis": db_results,
+            "ai_analysis": ai_results,
+            "combined_summary": combined,
+            "report": report,
+            "saved": do_save
+        }
+
+    @app.post("/allergens/generate-qr", tags=["Allergens"], summary="Generate allergen report QR code")
+    async def generate_allergen_qr(payload: Dict[str, Any] = Body(..., example={
+        "recipe_name": "Shrimp Tacos",
+        "base_url": "http://example.com"
+    })) -> Dict[str, Any]:
+        recipe_name = str(payload.get("recipe_name", "")).strip()
+        base_url = str(payload.get("base_url", "http://example.com")).strip()
+        if not recipe_name:
+            raise HTTPException(status_code=400, detail="`recipe_name` is required.")
+
+        recipes = recipe_engine.load_recipes()
+        recipe = recipes.get(recipe_name)
+        if not recipe:
+            raise HTTPException(status_code=404, detail=f"Recipe '{recipe_name}' not found.")
+        recipe_id = recipe.get("recipe_id")
+        if not recipe_id:
+            # ensure recipe has id
+            ok, msg = recipe_engine.update_recipe(recipe_name, {**recipe, "name": recipe_name})
+            recipes = recipe_engine.load_recipes()
+            recipe = recipes.get(recipe_name)
+            recipe_id = recipe.get("recipe_id")
+
+        file_path, img_bytes = allergen_engine.generate_qr_code(recipe_id, recipe_name, base_url)
+        import base64
+        b64 = base64.b64encode(img_bytes).decode("utf-8")
+        return {"file_path": file_path, "image_base64": b64}
+
+    @app.get("/allergens/recipe/{recipe_name}", tags=["Allergens"], summary="Get saved allergen data for a recipe")
+    async def get_recipe_allergens(recipe_name: str) -> Dict[str, Any]:
+        data = allergen_engine.get_recipe_allergens(recipe_name)
+        if not data:
+            raise HTTPException(status_code=404, detail="No allergen data found for recipe.")
+        return data
 
 
 # --- Inventory Endpoints ---
