@@ -16,7 +16,16 @@ def run_process(command, log_prefix):
             cwd=os.path.dirname(os.path.abspath(__file__))
         )
         # Wait for the process to complete
-        process.wait()
+        try:
+            process.wait()
+        except KeyboardInterrupt:
+            # Gracefully handle Ctrl+C without noisy traceback from child process
+            print(f"\n{log_prefix} received interrupt, shutting down...")
+            try:
+                process.terminate()
+            except Exception:
+                pass
+            return
         if process.returncode != 0:
             print(f"{log_prefix} terminated with a non-zero exit code: {process.returncode}")
 

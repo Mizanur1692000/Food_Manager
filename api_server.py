@@ -36,6 +36,7 @@ from utils.shared_functions import load_json_file
 from utils.dependency_checks import require_anthropic_key
 
 from fastapi.responses import JSONResponse
+from config import config
 
 app = FastAPI(
     title="Food Manager API",
@@ -111,6 +112,10 @@ def get_product_by_name(name: str):
         return None
     return matches.iloc[0].to_dict()
 
+# --- Feature Toggle Helper ---
+def feature_enabled(name: str) -> bool:
+    return name in getattr(config, "ACTIVE_API_FEATURES", set())
+
 # --- Pydantic Models for Request Bodies ---
 class AIRecipeRequest(BaseModel):
     prompt: str
@@ -123,83 +128,85 @@ class AllergenAnalysisPayload(BaseModel):
 # --- API Endpoints ---
 
 # --- Product Endpoints ---
-@app.get("/products", tags=["Products"], summary="Get all products")
-async def get_products() -> List[Dict[str, Any]]:
-    """
-    Retrieves a list of all products from the product database.
-    """
-    try:
-        df = product_manager.load_products()
-        if df is None:
-            return []
-        return df.fillna("").to_dict('records')
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to load products: {e}")
+if feature_enabled("products"):
+    @app.get("/products", tags=["Products"], summary="Get all products")
+    async def get_products() -> List[Dict[str, Any]]:
+        """
+        Retrieves a list of all products from the product database.
+        """
+        try:
+            df = product_manager.load_products()
+            if df is None:
+                return []
+            return df.fillna("").to_dict('records')
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Failed to load products: {e}")
 
-@app.post("/products", tags=["Products"], status_code=201, summary="Add a new product")
-async def add_product(product: Dict[str, Any] = Body(..., example={
-    "Product Name": "Organic Tomatoes",
-    "Category": "Produce",
-    "Supplier": "Farm Fresh Co.",
-    "Unit": "lb",
-    "Pack Size": "25 lb case",
-    "Current Price per Unit": 2.50,
-    "Cost per Oz": 0.156
-})) -> Dict[str, str]:
-    """
-    Adds a new product to the database.
-    """
-    try:
-        # Basic validation
-        required_fields = ["Product Name", "Category", "Unit", "Current Price per Unit"]
-        if not all(field in product for field in required_fields):
-            raise HTTPException(status_code=400, detail=f"Missing one of the required fields: {required_fields}")
-            
-        mapped = {
-            'name': product.get('Product Name'),
-            'sku': product.get('SKU', ''),
-            'location': product.get('Location', 'Dry Goods Storage'),
-            'category': product.get('Category', ''),
-            'pack': product.get('Pack', product.get('Pack Size', '')),
-            'size': product.get('Size', ''),
-            'unit': product.get('Unit'),
-            'cost': product.get('Current Price per Unit'),
-        }
-        success, message = product_manager.save_product(mapped)
-        if not success:
-            raise HTTPException(status_code=400, detail=message)
-        return {"status": "success", "message": message}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    @app.post("/products", tags=["Products"], status_code=201, summary="Add a new product")
+    async def add_product(product: Dict[str, Any] = Body(..., example={
+        "Product Name": "Organic Tomatoes",
+        "Category": "Produce",
+        "Supplier": "Farm Fresh Co.",
+        "Unit": "lb",
+        "Pack Size": "25 lb case",
+        "Current Price per Unit": 2.50,
+        "Cost per Oz": 0.156
+    })) -> Dict[str, str]:
+        """
+        Adds a new product to the database.
+        """
+        try:
+            # Basic validation
+            required_fields = ["Product Name", "Category", "Unit", "Current Price per Unit"]
+            if not all(field in product for field in required_fields):
+                raise HTTPException(status_code=400, detail=f"Missing one of the required fields: {required_fields}")
+                
+            mapped = {
+                'name': product.get('Product Name'),
+                'sku': product.get('SKU', ''),
+                'location': product.get('Location', 'Dry Goods Storage'),
+                'category': product.get('Category', ''),
+                'pack': product.get('Pack', product.get('Pack Size', '')),
+                'size': product.get('Size', ''),
+                'unit': product.get('Unit'),
+                'cost': product.get('Current Price per Unit'),
+            }
+            success, message = product_manager.save_product(mapped)
+            if not success:
+                raise HTTPException(status_code=400, detail=message)
+            return {"status": "success", "message": message}
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
 
-# --- Recipe Endpoints ---
-@app.get("/recipes", tags=["Recipes"], summary="Get all recipes")
-async def get_recipes() -> Dict[str, Any]:
-    """
-    Retrieves all recipes from the recipe database.
-    """
-    try:
-        recipes = recipe_engine.load_recipes()
-        return recipes
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to load recipes: {e}")
+# --- Recipe Endpoints (Non-AI) ---
+if feature_enabled("recipes"):
+    @app.get("/recipes", tags=["Recipes"], summary="Get all recipes")
+    async def get_recipes() -> Dict[str, Any]:
+        """
+        Retrieves all recipes from the recipe database.
+        """
+        try:
+            recipes = recipe_engine.load_recipes()
+            return recipes
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Failed to load recipes: {e}")
 
-@app.post("/recipes", tags=["Recipes"], status_code=201, summary="Add a new recipe")
-async def add_recipe(recipe: RecipeSchema) -> Dict[str, str]:
-    """
-    Adds a new recipe to the database.
-    
-    The recipe payload must conform to the RecipeSchema model.
-    """
-    try:
-        # Convert Pydantic model to dictionary for saving
-        recipe_data = recipe.dict()
-        success, message = recipe_engine.save_recipe(recipe_data)
-        if not success:
-            raise HTTPException(status_code=400, detail=message)
-        return {"status": "success", "message": message}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    @app.post("/recipes", tags=["Recipes"], status_code=201, summary="Add a new recipe")
+    async def add_recipe(recipe: RecipeSchema) -> Dict[str, str]:
+        """
+        Adds a new recipe to the database.
+        
+        The recipe payload must conform to the RecipeSchema model.
+        """
+        try:
+            # Convert Pydantic model to dictionary for saving
+            recipe_data = recipe.dict()
+            success, message = recipe_engine.save_recipe(recipe_data)
+            if not success:
+                raise HTTPException(status_code=400, detail=message)
+            return {"status": "success", "message": message}
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/recipes/generate", tags=["AI"], summary="Generate a recipe via AI")
 async def generate_recipe_unified(payload: AIRecipeRequest) -> Dict[str, Any]:
@@ -259,140 +266,143 @@ async def generate_recipe_ai_alias(payload: AIRecipeRequest):
     return await generate_recipe_unified(payload)
 
 # --- Review & Edit Endpoints (Backend) ---
-@app.post("/recipes/validate-app", tags=["Recipes"], summary="Validate an app-format recipe")
-async def validate_app_recipe(recipe: Dict[str, Any] = Body(..., example={
-    "name": "Shrimp Tacos",
-    "description": "Spicy and tangy tacos",
-    "servings": 6,
-    "prep_time": 20,
-    "cook_time": 10,
-    "category": "Main Course",
-    "instructions": "1. Prep shrimp\n2. Cook\n3. Assemble",
-    "ingredients": [
-        {"product_name": "Shrimp", "quantity": 24, "unit": "oz"},
-        {"product_name": "Cabbage", "quantity": 16, "unit": "oz"}
-    ]
-})) -> Dict[str, Any]:
-    """
-    Accepts the app-format recipe payload and validates it against RecipeSchema.
-    Returns validation status and normalized schema-compatible recipe.
-    """
-    schema_dict = app_recipe_to_schema(recipe)
-    ok, validated, errors = validate_recipe_dict(schema_dict)
-    return {
-        "valid": ok,
-        "errors": errors,
-        "normalized_recipe": validated.dict() if ok and validated else schema_dict
-    }
+if feature_enabled("recipes"):
+    @app.post("/recipes/validate-app", tags=["Recipes"], summary="Validate an app-format recipe")
+    async def validate_app_recipe(recipe: Dict[str, Any] = Body(..., example={
+        "name": "Shrimp Tacos",
+        "description": "Spicy and tangy tacos",
+        "servings": 6,
+        "prep_time": 20,
+        "cook_time": 10,
+        "category": "Main Course",
+        "instructions": "1. Prep shrimp\n2. Cook\n3. Assemble",
+        "ingredients": [
+            {"product_name": "Shrimp", "quantity": 24, "unit": "oz"},
+            {"product_name": "Cabbage", "quantity": 16, "unit": "oz"}
+        ]
+    })) -> Dict[str, Any]:
+        """
+        Accepts the app-format recipe payload and validates it against RecipeSchema.
+        Returns validation status and normalized schema-compatible recipe.
+        """
+        schema_dict = app_recipe_to_schema(recipe)
+        ok, validated, errors = validate_recipe_dict(schema_dict)
+        return {
+            "valid": ok,
+            "errors": errors,
+            "normalized_recipe": validated.dict() if ok and validated else schema_dict
+        }
 
-@app.post("/recipes/save-app", tags=["Recipes"], summary="Save an app-format recipe")
-async def save_app_recipe(recipe: Dict[str, Any] = Body(..., example={
-    "name": "Shrimp Tacos",
-    "description": "Spicy and tangy tacos",
-    "servings": 6,
-    "prep_time": 20,
-    "cook_time": 10,
-    "category": "Main Course",
-    "instructions": "1. Prep shrimp\n2. Cook\n3. Assemble",
-    "ingredients": [
-        {"product_name": "Shrimp", "quantity": 24, "unit": "oz"},
-        {"product_name": "Cabbage", "quantity": 16, "unit": "oz"}
-    ]
-})) -> Dict[str, Any]:
-    """
-    Saves the app-format recipe using the existing recipe_engine.save_recipe logic.
-    Returns success status and message.
-    """
-    try:
-        # recipe_engine.save_recipe expects app-format ingredients/product fields
-        success, message = recipe_engine.save_recipe(recipe)
-        if not success:
-            raise HTTPException(status_code=400, detail=message)
-        return {"status": "success", "message": message}
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    @app.post("/recipes/save-app", tags=["Recipes"], summary="Save an app-format recipe")
+    async def save_app_recipe(recipe: Dict[str, Any] = Body(..., example={
+        "name": "Shrimp Tacos",
+        "description": "Spicy and tangy tacos",
+        "servings": 6,
+        "prep_time": 20,
+        "cook_time": 10,
+        "category": "Main Course",
+        "instructions": "1. Prep shrimp\n2. Cook\n3. Assemble",
+        "ingredients": [
+            {"product_name": "Shrimp", "quantity": 24, "unit": "oz"},
+            {"product_name": "Cabbage", "quantity": 16, "unit": "oz"}
+        ]
+    })) -> Dict[str, Any]:
+        """
+        Saves the app-format recipe using the existing recipe_engine.save_recipe logic.
+        Returns success status and message.
+        """
+        try:
+            # recipe_engine.save_recipe expects app-format ingredients/product fields
+            success, message = recipe_engine.save_recipe(recipe)
+            if not success:
+                raise HTTPException(status_code=400, detail=message)
+            return {"status": "success", "message": message}
+        except HTTPException:
+            raise
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
 
 # --- Allergen Endpoints ---
-@app.post("/allergens/analyze", tags=["Allergens"], summary="Analyze ingredients for allergens")
-async def analyze_allergens(ingredients: List[Dict[str, Any]] = Body(..., example=[
-    {"product_name": "All-Purpose Flour", "quantity": 1, "unit": "cup"},
-    {"product_name": "Milk", "quantity": 1, "unit": "cup"},
-    {"product_name": "Large Eggs", "quantity": 2, "unit": "each"}
-])) -> Dict[str, Any]:
-    """
-    Analyzes a list of ingredients to detect potential allergens using both
-    the internal database and an AI-powered check.
-    """
-    if not ingredients:
-        raise HTTPException(status_code=400, detail="Ingredient list cannot be empty.")
+if feature_enabled("allergen"):
+    @app.post("/allergens/analyze", tags=["Allergens"], summary="Analyze ingredients for allergens")
+    async def analyze_allergens(ingredients: List[Dict[str, Any]] = Body(..., example=[
+        {"product_name": "All-Purpose Flour", "quantity": 1, "unit": "cup"},
+        {"product_name": "Milk", "quantity": 1, "unit": "cup"},
+        {"product_name": "Large Eggs", "quantity": 2, "unit": "each"}
+    ])) -> Dict[str, Any]:
+        """
+        Analyzes a list of ingredients to detect potential allergens using both
+        the internal database and an AI-powered check.
+        """
+        if not ingredients:
+            raise HTTPException(status_code=400, detail="Ingredient list cannot be empty.")
 
-    # 1. Run database-driven detection (uses fuzzy/exact matching against patterns)
-    db_results = allergen_engine.detect_allergens_database(ingredients)
+        # 1. Run database-driven detection (uses fuzzy/exact matching against patterns)
+        db_results = allergen_engine.detect_allergens_database(ingredients)
 
-    # 2. Run AI analysis (Claude via Anthropic)
-    is_ok, api_key, message = require_anthropic_key()
-    if not is_ok:
-        raise HTTPException(status_code=400, detail=f"Cannot perform AI analysis: {message}")
+        # 2. Run AI analysis (Claude via Anthropic)
+        is_ok, api_key, message = require_anthropic_key()
+        if not is_ok:
+            raise HTTPException(status_code=400, detail=f"Cannot perform AI analysis: {message}")
 
-    ai_results = allergen_engine.detect_allergens_ai(ingredients, api_key)
+        ai_results = allergen_engine.detect_allergens_ai(ingredients, api_key)
 
-    # 3. Combine detections into a single summary
-    combined_results = allergen_engine.combine_allergen_detections(
-        db_results,
-        ai_results,
-        None
-    )
+        # 3. Combine detections into a single summary
+        combined_results = allergen_engine.combine_allergen_detections(
+            db_results,
+            ai_results,
+            None
+        )
 
-    return {
-        "database_analysis": db_results,
-        "ai_analysis": ai_results,
-        "combined_summary": combined_results
-    }
+        return {
+            "database_analysis": db_results,
+            "ai_analysis": ai_results,
+            "combined_summary": combined_results
+        }
 
 
 # --- Inventory Endpoints ---
-@app.get("/inventory/counts", tags=["Inventory"], summary="Get all inventory count history")
-async def get_inventory_counts() -> List[Dict[str, Any]]:
-    """
-    Retrieves historical inventory count data.
-    """
-    try:
-        # This function might not exist, let's use a direct file load as a fallback
-        counts = load_json_file('data/inventory_counts.json')
-        return counts
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to load inventory counts: {e}")
+if feature_enabled("inventory"):
+    @app.get("/inventory/counts", tags=["Inventory"], summary="Get all inventory count history")
+    async def get_inventory_counts() -> List[Dict[str, Any]]:
+        """
+        Retrieves historical inventory count data.
+        """
+        try:
+            # This function might not exist, let's use a direct file load as a fallback
+            counts = load_json_file('data/inventory_counts.json')
+            return counts
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Failed to load inventory counts: {e}")
 
-@app.post("/inventory/calculate_variance", tags=["Inventory"], summary="Calculate inventory variance")
-async def calculate_variance(
-    start_date: str = Body(..., example="2025-12-01"),
-    end_date: str = Body(..., example="2025-12-18")
-) -> Dict[str, Any]:
-    """
-    Calculates inventory variance between two dates.
-    Requires sales data and inventory counts to be present for the period.
-    """
-    try:
-        # Load necessary data
-        sales_data = pd.read_csv('data/sales_data.csv')
-        recipes = recipe_engine.load_recipes()
-        products = product_manager.load_products()
-        
-        # Run variance calculation
-        variance_summary, _ = variance_engine.calculate_variance(
-            start_date, end_date, sales_data, recipes, products
-        )
-        
-        if variance_summary is None:
-            raise HTTPException(status_code=404, detail="Could not calculate variance. Check if data is available for the selected date range.")
+    @app.post("/inventory/calculate_variance", tags=["Inventory"], summary="Calculate inventory variance")
+    async def calculate_variance(
+        start_date: str = Body(..., example="2025-12-01"),
+        end_date: str = Body(..., example="2025-12-18")
+    ) -> Dict[str, Any]:
+        """
+        Calculates inventory variance between two dates.
+        Requires sales data and inventory counts to be present for the period.
+        """
+        try:
+            # Load necessary data
+            sales_data = pd.read_csv('data/sales_data.csv')
+            recipes = recipe_engine.load_recipes()
+            products = product_manager.load_products()
+            
+            # Run variance calculation
+            variance_summary, _ = variance_engine.calculate_variance(
+                start_date, end_date, sales_data, recipes, products
+            )
+            
+            if variance_summary is None:
+                raise HTTPException(status_code=404, detail="Could not calculate variance. Check if data is available for the selected date range.")
 
-        return variance_summary.to_dict('records')
-    except FileNotFoundError as e:
-        raise HTTPException(status_code=404, detail=f"Data file not found: {e.filename}")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An error occurred during variance calculation: {e}")
+            return variance_summary.to_dict('records')
+        except FileNotFoundError as e:
+            raise HTTPException(status_code=404, detail=f"Data file not found: {e.filename}")
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"An error occurred during variance calculation: {e}")
 
 
 if __name__ == "__main__":

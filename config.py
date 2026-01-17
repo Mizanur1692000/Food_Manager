@@ -214,6 +214,15 @@ class Config:
     # METHODS
     # ===============================================================================
 
+    # ===============================================================================
+    # API FEATURE TOGGLES
+    # ===============================================================================
+
+    # Enable only the APIs you want active. Others remain defined in code
+    # but are conditionally not registered with FastAPI.
+    # Valid feature keys: "ai_recipe", "allergen", "products", "recipes", "inventory"
+    ACTIVE_API_FEATURES = {"ai_recipe", "allergen"}
+
     @classmethod
     def ensure_directories(cls) -> None:
         """Ensure all required directories exist"""

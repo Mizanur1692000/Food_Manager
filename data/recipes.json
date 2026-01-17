@@ -2475,5 +2475,35 @@
     ],
     "created_at": "2025-12-19T00:59:44.490475",
     "updated_at": "2025-12-19T00:59:44.490475"
+  },
+  "rxgdfvszd": {
+    "name": "rxgdfvszd",
+    "description": "szgvzsdgvsz",
+    "servings": 4,
+    "prep_time": 30,
+    "cook_time": 45,
+    "category": "Main Course",
+    "instructions": "",
+    "ingredients": [],
+    "recipe_id": "4262c2d5-19c6-4e56-a96e-37df55c76a30",
+    "total_cost": 0,
+    "ingredient_costs": [],
+    "created_at": "2026-01-18T01:42:12.689504",
+    "updated_at": "2026-01-18T01:42:12.689504"
+  },
+  "rxgdfvszdrrthbrfbc": {
+    "name": "rxgdfvszdrrthbrfbc",
+    "description": "szgvzsdgvsz",
+    "servings": 4,
+    "prep_time": 30,
+    "cook_time": 45,
+    "category": "Main Course",
+    "instructions": "",
+    "ingredients": [],
+    "recipe_id": "5a3cbf78-0870-4df5-8dc1-996586bc0a70",
+    "total_cost": 0,
+    "ingredient_costs": [],
+    "created_at": "2026-01-18T01:42:23.968700",
+    "updated_at": "2026-01-18T01:42:23.968700"
   }
 }
