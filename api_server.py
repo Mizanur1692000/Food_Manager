@@ -306,6 +306,11 @@ if feature_enabled("ai_recipe"):
             # recipe_engine.save_recipe expects app-format ingredients/product fields
             success, message = recipe_engine.save_recipe(recipe)
             if not success:
+                # If duplicate, return 200 with a friendly "exists" status
+                msg_text = str(message).lower()
+                if "already exists" in msg_text:
+                    return {"status": "exists", "message": message}
+                # Otherwise treat as a client error
                 raise HTTPException(status_code=400, detail=message)
             return {"status": "success", "message": message}
         except HTTPException:

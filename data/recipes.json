@@ -2591,5 +2591,70 @@
     "ingredient_costs": [],
     "created_at": "2026-01-18T05:41:00.939967",
     "updated_at": "2026-01-18T05:41:00.939967"
+  },
+  "Grilled Chicken Breast": {
+    "name": "Grilled Chicken Breast",
+    "description": "Seasoned and grilled chicken breast with herb marinade, perfect for quick service preparation",
+    "servings": 12,
+    "prep_time": 15,
+    "cook_time": 18,
+    "category": "Main Course",
+    "instructions": "1. Pound chicken breasts to even 0.75-inch thickness. 2. Combine olive oil, garlic powder, onion powder, paprika, oregano, salt, pepper, and lemon juice in mixing bowl. 3. Coat chicken breasts thoroughly with marinade mixture. 4. Let marinate for minimum 10 minutes at room temperature. 5. Preheat grill to medium-high heat (375-400\u00b0F). 6. Grill chicken for 6-8 minutes per side until internal temperature reaches 165\u00b0F. 7. Let rest for 3 minutes before slicing. 8. Hold at 140\u00b0F or above for service.",
+    "ingredients": [
+      {
+        "product_name": "Chicken Breast Boneless Skinless",
+        "quantity": 6.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.031,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.062,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.016,
+        "unit": "lb"
+      }
+    ],
+    "recipe_id": "6ced4573-8666-47cf-8ff8-caa71b6c38b1",
+    "total_cost": 20.8202,
+    "ingredient_costs": [
+      {
+        "product_name": "Chicken Breast Boneless Skinless",
+        "quantity": 6.0,
+        "unit": "lb",
+        "cost": 19.5,
+        "unit_cost": 3.25
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.031,
+        "unit": "gallon",
+        "cost": 0.8835,
+        "unit_cost": 28.5
+      },
+      {
+        "product_name": "Butter Unsalted AA",
+        "quantity": 0.062,
+        "unit": "lb",
+        "cost": 0.30069999999999997,
+        "unit_cost": 4.85
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.016,
+        "unit": "lb",
+        "cost": 0.136,
+        "unit_cost": 8.5
+      }
+    ],
+    "created_at": "2026-01-21T00:35:09.539740",
+    "updated_at": "2026-01-21T00:35:09.539740"
   }
 }
