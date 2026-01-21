@@ -11,9 +11,10 @@ import requests
 
 # Import existing recipe engine functions
 from modules.recipe_engine import (
-    save_recipe, load_recipes, load_products,
+    save_recipe, load_recipes,
     format_currency, get_recipe_text
 )
+from modules.product_manager import load_products
 from utils.dependency_checks import require_anthropic_key
 
 # ---------- CONFIG ----------
@@ -74,7 +75,7 @@ def oz_to_unit(oz_amount: float, target_unit: str, product_info: dict = None) ->
 # ---------- FUZZY MATCHING ----------
 @st.cache_data
 def load_product_database() -> pd.DataFrame:
-    """Load product database from existing product_data.csv"""
+    """Load product database from active storage (PostgreSQL when configured)."""
     return load_products()
 
 def map_ingredient_to_product(ingredient_name: str, products_df: pd.DataFrame, score_cutoff=75):

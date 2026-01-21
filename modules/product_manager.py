@@ -39,6 +39,7 @@ import locale
 from datetime import datetime
 from typing import Dict, List, Tuple, Optional, Union, Any
 from pathlib import Path
+from sqlalchemy import create_engine, text
 
 # Import utilities
 from utils.validator import validate_product_data, validate_sku, validate_price
@@ -190,6 +191,30 @@ TRANSLATIONS: Dict[str, Dict[str, str]] = {
 # File path for storing products
 DATA_FILE = config.PRODUCTS_FILE
 
+# Database engine cache
+_DB_ENGINE = None
+
+def _normalize_db_url(url: str) -> str:
+    if not url:
+        return url
+    # Allow postgres:// scheme by mapping to SQLAlchemy's preferred driver URL
+    if url.startswith("postgres://"):
+        return url.replace("postgres://", "postgresql+psycopg2://", 1)
+    return url
+
+def _get_engine():
+    global _DB_ENGINE
+    if _DB_ENGINE is not None:
+        return _DB_ENGINE
+    db_url = _normalize_db_url(getattr(config, "DATABASE_URL", ""))
+    if not db_url:
+        return None
+    _DB_ENGINE = create_engine(db_url, pool_pre_ping=True)
+    return _DB_ENGINE
+
+def _use_db() -> bool:
+    return bool(getattr(config, "DATABASE_URL", ""))
+
 # Unit conversion factors to ounces
 UNIT_CONVERSIONS: Dict[str, float] = config.UNIT_CONVERSIONS
 
@@ -269,6 +294,9 @@ def migrate_existing_data() -> Optional[str]:
         FileLoadError: If file operations fail
     """
     try:
+        # CSV migration is skipped when using DB storage
+        if _use_db():
+            return None
         if os.path.exists(DATA_FILE):
             df = load_csv_file(str(DATA_FILE))
             migration_messages = []
@@ -325,6 +353,9 @@ def initialize_product_data() -> Optional[str]:
         FileLoadError: If file operations fail
     """
     try:
+        # Skip CSV initialization when using DB
+        if _use_db():
+            return None
         if not os.path.exists("data"):
             os.makedirs("data")
         if not os.path.exists(DATA_FILE):
@@ -400,6 +431,59 @@ def save_product(product: Dict[str, Any]) -> Tuple[bool, str]:
         ValidationError: If product data is invalid
     """
     try:
+        if _use_db():
+            # Validate product data
+            is_valid, errors = validate_product_data(product)
+            if not is_valid:
+                return False, f"Validation errors: {', '.join(errors)}"
+
+            engine = _get_engine()
+            if engine is None:
+                return False, "Database engine not available"
+
+            # Check duplicate by product_name
+            with engine.connect() as conn:
+                exists = conn.execute(
+                    text("SELECT 1 FROM product_inventory WHERE product_name = :name LIMIT 1"),
+                    {"name": product['name']}
+                ).first()
+                if exists:
+                    return False, get_text("product_exists", "en", name=product['name'])
+
+            cost_per_oz = calculate_cost_per_oz(product['cost'], product['unit'])
+            creation_date = datetime.now().date()
+            params = {
+                "product_name": product['name'],
+                "sku": product.get('sku', ''),
+                "location": product.get('location', 'Dry Goods Storage'),
+                "category": product.get('category', ''),
+                "pack_size": product.get('pack_size', ''),
+                "pack": int(product.get('pack', 0)) if str(product.get('pack', '')).isdigit() else None,
+                "size": product.get('size', ''),
+                "unit": product['unit'],
+                "current_price_per_unit": float(product['cost']),
+                "last_price_per_unit": float(product['cost']),
+                "last_updated_date": creation_date,
+                "cost_per_oz": float(cost_per_oz),
+            }
+            with engine.begin() as conn:
+                conn.execute(text(
+                    """
+                    INSERT INTO product_inventory (
+                        product_name, sku, location, category,
+                        pack_size, pack, size, unit,
+                        current_price_per_unit, last_price_per_unit,
+                        last_updated_date, cost_per_oz
+                    ) VALUES (
+                        :product_name, :sku, :location, :category,
+                        :pack_size, :pack, :size, :unit,
+                        :current_price_per_unit, :last_price_per_unit,
+                        :last_updated_date, :cost_per_oz
+                    )
+                    """
+                ), params)
+            return True, get_text("product_added", "en", name=product['name'])
+
         # Validate product data
         is_valid, errors = validate_product_data(product)
         if not is_valid:
@@ -460,6 +544,38 @@ def load_products() -> pd.DataFrame:
         FileLoadError: If file operations fail
     """
     try:
+        if _use_db():
+            engine = _get_engine()
+            if engine is None:
+                return pd.DataFrame({
+                    col: pd.Series(dtype='object') for col in [
+                        'Product Name', 'SKU', 'Location', 'Category', 'Pack Size', 'Pack', 'Size', 'Unit',
+                        'Current Price per Unit', 'Last Price per Unit', 'Last Updated Date', 'Cost per Oz'
+                    ]
+                })
+            query = (
+                "SELECT product_name, sku, location, category, pack_size, pack, size, unit, "
+                "current_price_per_unit, last_price_per_unit, last_updated_date, cost_per_oz "
+                "FROM product_inventory"
+            )
+            with engine.connect() as conn:
+                df = pd.read_sql_query(text(query), conn)
+            # Rename columns to match legacy CSV-based schema expected by app
+            rename_map = {
+                'product_name': 'Product Name',
+                'sku': 'SKU',
+                'location': 'Location',
+                'category': 'Category',
+                'pack_size': 'Pack Size',
+                'pack': 'Pack',
+                'size': 'Size',
+                'unit': 'Unit',
+                'current_price_per_unit': 'Current Price per Unit',
+                'last_price_per_unit': 'Last Price per Unit',
+                'last_updated_date': 'Last Updated Date',
+                'cost_per_oz': 'Cost per Oz'
+            }
+            return df.rename(columns=rename_map)
         if not os.path.exists(DATA_FILE):
             # Initialize if file doesn't exist
             initialize_product_data()
@@ -469,6 +585,27 @@ def load_products() -> pd.DataFrame:
         return df if isinstance(df, pd.DataFrame) else pd.DataFrame()
     except Exception as e:
         raise FileLoadError(f"Error loading products: {e}")
+
+def get_products_count() -> int:
+    """
+    Return the total number of products using the active storage backend.
+
+    When DATABASE_URL is set, counts rows from product_inventory.
+    Otherwise, returns length of the CSV DataFrame.
+    """
+    try:
+        if _use_db():
+            engine = _get_engine()
+            if engine is None:
+                return 0
+            with engine.connect() as conn:
+                row = conn.execute(text("SELECT COUNT(*) FROM product_inventory")).first()
+                return int(row[0]) if row and row[0] is not None else 0
+        # Fallback to CSV count
+        df = load_products()
+        return int(len(df))
+    except Exception:
+        return 0
 
 def delete_product(product_name: str) -> Tuple[bool, str]:
     """
@@ -484,6 +621,18 @@ def delete_product(product_name: str) -> Tuple[bool, str]:
         FileLoadError: If file operations fail
     """
     try:
+        if _use_db():
+            engine = _get_engine()
+            if engine is None:
+                return False, "Database engine not available"
+            with engine.begin() as conn:
+                result = conn.execute(
+                    text("DELETE FROM product_inventory WHERE product_name = :name"),
+                    {"name": product_name}
+                )
+                if result.rowcount == 0:
+                    return False, f"Product '{product_name}' not found."
+            return True, get_text("deleted_successfully", "en", name=product_name)
         products_df = load_products()
 
         if product_name not in products_df['Product Name'].values:
@@ -519,6 +668,83 @@ def update_product(old_name: str, updated_product: Dict[str, Any]) -> Tuple[bool
         ValidationError: If product data is invalid
     """
     try:
+        if _use_db():
+            # Validate updated product data
+            is_valid, errors = validate_product_data(updated_product)
+            if not is_valid:
+                return False, f"Validation errors: {', '.join(errors)}"
+
+            engine = _get_engine()
+            if engine is None:
+                return False, "Database engine not available"
+
+            with engine.begin() as conn:
+                row = conn.execute(
+                    text("SELECT current_price_per_unit FROM product_inventory WHERE product_name = :name"),
+                    {"name": old_name}
+                ).first()
+                if not row:
+                    return False, f"Product '{old_name}' not found."
+                current_price = float(row[0])
+                new_price = float(updated_product['cost'])
+                cost_per_oz = calculate_cost_per_oz(updated_product['cost'], updated_product['unit'])
+
+                params = {
+                    "old_name": old_name,
+                    "product_name": updated_product['name'],
+                    "sku": updated_product.get('sku', ''),
+                    "location": updated_product.get('location', 'Dry Goods Storage'),
+                    "category": updated_product.get('category', ''),
+                    "pack_size": updated_product.get('pack_size', ''),
+                    "pack": int(updated_product.get('pack', 0)) if str(updated_product.get('pack', '')).isdigit() else None,
+                    "size": updated_product.get('size', ''),
+                    "unit": updated_product['unit'],
+                    "current_price_per_unit": new_price,
+                    "cost_per_oz": float(cost_per_oz),
+                }
+
+                if current_price != new_price:
+                    params.update({
+                        "last_price_per_unit": current_price,
+                        "last_updated_date": datetime.now().date(),
+                    })
+                    stmt = text(
+                        """
+                        UPDATE product_inventory SET
+                            product_name = :product_name,
+                            sku = :sku,
+                            location = :location,
+                            category = :category,
+                            pack_size = :pack_size,
+                            pack = :pack,
+                            size = :size,
+                            unit = :unit,
+                            current_price_per_unit = :current_price_per_unit,
+                            last_price_per_unit = :last_price_per_unit,
+                            last_updated_date = :last_updated_date,
+                            cost_per_oz = :cost_per_oz
+                        WHERE product_name = :old_name
+                        """
+                    )
+                else:
+                    stmt = text(
+                        """
+                        UPDATE product_inventory SET
+                            product_name = :product_name,
+                            sku = :sku,
+                            location = :location,
+                            category = :category,
+                            pack_size = :pack_size,
+                            pack = :pack,
+                            size = :size,
+                            unit = :unit,
+                            current_price_per_unit = :current_price_per_unit,
+                            cost_per_oz = :cost_per_oz
+                        WHERE product_name = :old_name
+                        """
+                    )
+                conn.execute(stmt, params)
+            return True, get_text("product_updated", "en", name=updated_product['name'])
         # Validate updated product data
         is_valid, errors = validate_product_data(updated_product)
         if not is_valid:
@@ -579,6 +805,62 @@ def bulk_update_prices(supplier_df: pd.DataFrame, sku_column: str, price_column:
         FileLoadError: If file operations fail
     """
     try:
+        if _use_db():
+            engine = _get_engine()
+            if engine is None:
+                return False, "Database engine not available"
+            updated_count = 0
+            with engine.begin() as conn:
+                for _, supplier_row in supplier_df.iterrows():
+                    sku_val = str(supplier_row[sku_column]).strip()
+                    try:
+                        new_price = float(supplier_row[price_column])
+                    except (TypeError, ValueError):
+                        continue
+
+                    row = conn.execute(
+                        text("SELECT unit, current_price_per_unit FROM product_inventory WHERE sku = :sku"),
+                        {"sku": sku_val}
+                    ).first()
+                    if not row:
+                        continue
+                    unit, current_price = row[0], float(row[1])
+                    params = {
+                        "sku": sku_val,
+                        "current_price_per_unit": new_price,
+                        "cost_per_oz": calculate_cost_per_oz(new_price, unit) if unit else None,
+                    }
+                    if current_price != new_price:
+                        params.update({
+                            "last_price_per_unit": current_price,
+                            "last_updated_date": datetime.now().date(),
+                        })
+                        stmt = text(
+                            """
+                            UPDATE product_inventory SET
+                                current_price_per_unit = :current_price_per_unit,
+                                last_price_per_unit = :last_price_per_unit,
+                                last_updated_date = :last_updated_date,
+                                cost_per_oz = :cost_per_oz
+                            WHERE sku = :sku
+                            """
+                        )
+                    else:
+                        stmt = text(
+                            """
+                            UPDATE product_inventory SET
+                                current_price_per_unit = :current_price_per_unit,
+                                cost_per_oz = :cost_per_oz
+                            WHERE sku = :sku
+                            """
+                        )
+                    conn.execute(stmt, params)
+                    updated_count += 1
+            if updated_count > 0:
+                return True, get_text("updated_products_count", "en", count=updated_count)
+            return False, "No products were updated. Check SKU matching."
+
+        # Fallback to CSV behavior
         products_df = load_products()
         updated_count = 0
 
@@ -631,6 +913,35 @@ def find_product_by_sku(sku: str) -> Optional[Dict[str, Any]]:
         Product dict or None if not found
     """
     try:
+        if _use_db():
+            engine = _get_engine()
+            if engine is None:
+                return None
+            sku_str = str(sku).strip()
+            with engine.connect() as conn:
+                row = conn.execute(
+                    text("SELECT product_name, sku, location, category, pack_size, pack, size, unit, current_price_per_unit, last_price_per_unit, last_updated_date, cost_per_oz FROM product_inventory WHERE sku = :sku LIMIT 1"),
+                    {"sku": sku_str}
+                ).mappings().first()
+                if not row:
+                    return None
+                data = dict(row)
+                # Map to legacy CSV-style keys expected by callers
+                rename_map = {
+                    'product_name': 'Product Name',
+                    'sku': 'SKU',
+                    'location': 'Location',
+                    'category': 'Category',
+                    'pack_size': 'Pack Size',
+                    'pack': 'Pack',
+                    'size': 'Size',
+                    'unit': 'Unit',
+                    'current_price_per_unit': 'Current Price per Unit',
+                    'last_price_per_unit': 'Last Price per Unit',
+                    'last_updated_date': 'Last Updated Date',
+                    'cost_per_oz': 'Cost per Oz'
+                }
+                return {rename_map.get(k, k): v for k, v in data.items()}
         products_df = load_products()
 
         if products_df.empty:

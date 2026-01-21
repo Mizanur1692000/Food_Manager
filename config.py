@@ -6,6 +6,7 @@ including data paths, UI settings, business logic parameters, and file handling.
 """
 
 import os
+from dotenv import load_dotenv
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 
@@ -31,6 +32,15 @@ class Config:
     IMPORT_TEMPLATES_FILE = DATA_DIR / "import_templates.json"
     ALLERGEN_DATABASE_FILE = DATA_DIR / "allergen_database.json"
     VARIANCE_HISTORY_FILE = DATA_DIR / "variance_history.json"
+
+    # ===============================================================================
+    # DATABASE SETTINGS
+    # ===============================================================================
+    # Use a PostgreSQL database if provided. Example:
+    # postgres://user:password@host:5432/dbname or postgresql+psycopg2://...
+    # Load environment variables from .env if present
+    load_dotenv()
+    DATABASE_URL = os.getenv("DATABASE_URL", "")
 
     # Backup and output directories
     BACKUP_DIR = DATA_DIR / "backups"

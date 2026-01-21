@@ -4,7 +4,7 @@ from modules.product_manager import (
     get_text, initialize_product_data, load_products, save_product,
     delete_product, update_product, bulk_update_prices, format_currency,
     format_currency_small, UNIT_CONVERSIONS, calculate_cost_per_oz,
-    find_product_by_sku, bulk_import_products
+    find_product_by_sku, bulk_import_products, get_products_count
 )
 from modules.product_importer import (
     detect_csv_format, parse_sysco_format, parse_standard_csv,
@@ -64,7 +64,8 @@ def show_summary(products_df, current_lang):
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        st.metric(get_text("total_products", current_lang), len(products_df))
+        total_count = get_products_count()
+        st.metric(get_text("total_products", current_lang), total_count)
 
     with col2:
         if not products_df.empty:
@@ -839,7 +840,7 @@ def main():
 
             st.write(get_text("showing_products", current_lang,
                               filtered=len(filtered_df),
-                              total=len(products_df)))
+                              total=get_products_count()))
             if filtered_df.empty:
                 st.info(get_text("no_products_match", current_lang))
             else:
