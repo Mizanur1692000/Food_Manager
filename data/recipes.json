@@ -675,7 +675,363 @@
     "cost_per_serving": 5.79,
     "instructions": "1. Season salmon with salt and pepper\n2. Preheat grill to medium-high\n3. Grill salmon skin-side down for 6-8 minutes\n4. Flip and cook for 4-5 minutes more\n5. Make lemon butter sauce with garlic and parsley\n6. Drizzle sauce over salmon and serve",
     "created_at": "2025-10-27T00:00:00",
-    "updated_at": "2025-10-27T00:00:00"
+    "updated_at": "2025-10-27T00:00:00",
+    "allergens": [
+      "fish",
+      "milk",
+      "wheat",
+      "tree_nuts",
+      "peanuts",
+      "soybeans",
+      "sesame",
+      "nightshades",
+      "corn",
+      "lupin",
+      "mustard",
+      "celery",
+      "gluten"
+    ],
+    "allergen_details": {
+      "fish": {
+        "allergen": "fish",
+        "display_name": "Fish",
+        "confidence": 100,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Basil Fresh",
+            "match_type": "fuzzy",
+            "pattern": "bass",
+            "confidence": 77
+          }
+        ],
+        "metadata": {
+          "display_name": "Fish",
+          "category": "seafood",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83d\udc1f",
+          "description": "Contains fish or fish products"
+        },
+        "sources": [
+          "database",
+          "ai",
+          "manual"
+        ],
+        "ai_reason": "Contains salmon, which is a finned fish"
+      },
+      "milk": {
+        "allergen": "milk",
+        "display_name": "Milk/Dairy",
+        "confidence": 100,
+        "detection_method": "ai",
+        "reason": "Contains butter, which is a dairy product",
+        "matched_ingredients": [
+          {
+            "ingredient": "Butter Unsalted AA"
+          }
+        ],
+        "metadata": {
+          "display_name": "Milk/Dairy",
+          "category": "dairy",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\udd5b",
+          "description": "Contains milk or dairy products"
+        },
+        "sources": [
+          "ai"
+        ]
+      },
+      "wheat": {
+        "allergen": "wheat",
+        "display_name": "Wheat",
+        "confidence": 100,
+        "detection_method": "manual",
+        "sources": [
+          "manual"
+        ],
+        "matched_ingredients": [],
+        "metadata": {
+          "display_name": "Wheat",
+          "category": "grain",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83c\udf3e",
+          "description": "Contains wheat or wheat products"
+        }
+      },
+      "tree_nuts": {
+        "allergen": "tree_nuts",
+        "display_name": "Tree Nuts",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Olive Oil Extra Virgin",
+            "match_type": "fuzzy",
+            "pattern": "nut oil",
+            "confidence": 85
+          },
+          {
+            "ingredient": "Salt Kosher Diamond Crystal",
+            "match_type": "fuzzy",
+            "pattern": "almond",
+            "confidence": 75
+          }
+        ],
+        "metadata": {
+          "display_name": "Tree Nuts",
+          "category": "nuts",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83c\udf30",
+          "description": "Contains tree nuts (almonds, walnuts, cashews, etc.)"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "peanuts": {
+        "allergen": "peanuts",
+        "display_name": "Peanuts",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Olive Oil Extra Virgin",
+            "match_type": "fuzzy",
+            "pattern": "peanut oil",
+            "confidence": 85
+          },
+          {
+            "ingredient": "Black Pepper Ground",
+            "match_type": "fuzzy",
+            "pattern": "groundnut",
+            "confidence": 72
+          }
+        ],
+        "metadata": {
+          "display_name": "Peanuts",
+          "category": "legume",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\udd5c",
+          "description": "Contains peanuts or peanut products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "soybeans": {
+        "allergen": "soybeans",
+        "display_name": "Soy",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Olive Oil Extra Virgin",
+            "match_type": "fuzzy",
+            "pattern": "soybean oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Soy",
+          "category": "legume",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\uded8",
+          "description": "Contains soy or soybean products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "sesame": {
+        "allergen": "sesame",
+        "display_name": "Sesame",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Olive Oil Extra Virgin",
+            "match_type": "fuzzy",
+            "pattern": "sesame oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Sesame",
+          "category": "seed",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83c\udf31",
+          "description": "Contains sesame seeds or sesame products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "nightshades": {
+        "allergen": "nightshades",
+        "display_name": "Nightshades",
+        "confidence": 100,
+        "detection_method": "database_exact",
+        "matched_ingredients": [
+          {
+            "ingredient": "Tomatoes Roma Fresh",
+            "match_type": "exact",
+            "confidence": 100
+          },
+          {
+            "ingredient": "Black Pepper Ground",
+            "match_type": "exact",
+            "confidence": 100
+          }
+        ],
+        "metadata": {
+          "display_name": "Nightshades",
+          "category": "vegetable",
+          "severity": "low",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf45",
+          "description": "Contains nightshade vegetables (tomatoes, peppers, eggplant)"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "corn": {
+        "allergen": "corn",
+        "display_name": "Corn",
+        "confidence": 100,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Olive Oil Extra Virgin",
+            "match_type": "fuzzy",
+            "pattern": "corn oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Corn",
+          "category": "grain",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf3d",
+          "description": "Contains corn or corn products"
+        },
+        "sources": [
+          "database",
+          "manual"
+        ]
+      },
+      "lupin": {
+        "allergen": "lupin",
+        "display_name": "Lupin",
+        "confidence": 100,
+        "detection_method": "manual",
+        "sources": [
+          "manual"
+        ],
+        "matched_ingredients": [],
+        "metadata": {
+          "display_name": "Lupin",
+          "category": "legume",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf3f",
+          "description": "Contains lupin or lupin flour"
+        }
+      },
+      "mustard": {
+        "allergen": "mustard",
+        "display_name": "Mustard",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Olive Oil Extra Virgin",
+            "match_type": "fuzzy",
+            "pattern": "mustard oil",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Mustard",
+          "category": "spice",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf2d",
+          "description": "Contains mustard or mustard products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "celery": {
+        "allergen": "celery",
+        "display_name": "Celery",
+        "confidence": 85,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Salt Kosher Diamond Crystal",
+            "match_type": "fuzzy",
+            "pattern": "celery salt",
+            "confidence": 85
+          }
+        ],
+        "metadata": {
+          "display_name": "Celery",
+          "category": "vegetable",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83e\udd6c",
+          "description": "Contains celery or celery products"
+        },
+        "sources": [
+          "database"
+        ]
+      },
+      "gluten": {
+        "allergen": "gluten",
+        "display_name": "Gluten",
+        "confidence": 73,
+        "detection_method": "database_fuzzy",
+        "matched_ingredients": [
+          {
+            "ingredient": "Salt Kosher Diamond Crystal",
+            "match_type": "fuzzy",
+            "pattern": "malt",
+            "confidence": 73
+          }
+        ],
+        "metadata": {
+          "display_name": "Gluten",
+          "category": "protein",
+          "severity": "medium",
+          "fda_top_9": false,
+          "icon": "\ud83c\udf3e",
+          "description": "Contains gluten (wheat, barley, rye)"
+        },
+        "sources": [
+          "database"
+        ]
+      }
+    },
+    "allergen_metadata": {
+      "detection_methods": [
+        "ai",
+        "database",
+        "manual"
+      ],
+      "last_updated": "2026-01-22T05:43:43.929185",
+      "total_detected": 13,
+      "fda_top_9_count": 7
+    }
   },
   "Spaghetti Carbonara": {
     "recipe_id": "recipe_007",
@@ -2590,7 +2946,50 @@
     "total_cost": 0,
     "ingredient_costs": [],
     "created_at": "2026-01-18T05:41:00.939967",
-    "updated_at": "2026-01-18T05:41:00.939967"
+    "updated_at": "2026-01-18T05:41:00.939967",
+    "allergens": [
+      "shellfish"
+    ],
+    "allergen_details": {
+      "shellfish": {
+        "allergen": "shellfish",
+        "display_name": "Shellfish",
+        "confidence": 100,
+        "detection_method": "database_exact",
+        "matched_ingredients": [
+          {
+            "ingredient": "Shrimp",
+            "match_type": "exact",
+            "confidence": 100
+          },
+          {
+            "ingredient": "Cabbage",
+            "match_type": "fuzzy",
+            "pattern": "crab",
+            "confidence": 77
+          }
+        ],
+        "metadata": {
+          "display_name": "Shellfish",
+          "category": "seafood",
+          "severity": "high",
+          "fda_top_9": true,
+          "icon": "\ud83e\udd90",
+          "description": "Contains shellfish or crustacean products"
+        },
+        "sources": [
+          "database"
+        ]
+      }
+    },
+    "allergen_metadata": {
+      "detection_methods": [
+        "database"
+      ],
+      "last_updated": "2026-01-22T06:25:50.755283",
+      "total_detected": 1,
+      "fda_top_9_count": 1
+    }
   },
   "Grilled Chicken Breast": {
     "name": "Grilled Chicken Breast",

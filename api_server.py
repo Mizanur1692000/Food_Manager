@@ -108,6 +108,29 @@ class AIRecipeRequest(BaseModel):
 class AllergenAnalysisPayload(BaseModel):
     recipe_text: str
 
+class AllergenAnalyzeRequest(BaseModel):
+    ingredients: List[Dict[str, Any]]
+    db_confidence: Optional[int] = 70
+    manual_allergens: Optional[List[str]] = None
+    recipe_name: Optional[str] = None
+
+class AllergenAnalyzeRecipeRequest(BaseModel):
+    recipe_name: str
+    db_confidence: Optional[int] = 70
+    manual_allergens: Optional[List[str]] = None
+    save: Optional[bool] = False
+
+class AllergenQRRequest(BaseModel):
+    recipe_name: str
+    base_url: str = "http://example.com"
+    format: Optional[str] = "png"  # "png" or "svg"
+
+class AllergenBatchAnalyzeRequest(BaseModel):
+    recipe_names: List[str]
+    detection_method: str  # "Database Only" | "AI Only" | "Both"
+    db_confidence: Optional[int] = 70
+    auto_save: Optional[bool] = True
+
 # --- API Endpoints ---
 
 # --- Product Endpoints ---
@@ -321,33 +344,34 @@ if feature_enabled("ai_recipe"):
 # --- Allergen Endpoints ---
 if feature_enabled("allergen"):
     @app.post("/allergens/analyze", tags=["Allergens"], summary="Analyze ingredients for allergens")
-    async def analyze_allergens(ingredients: List[Dict[str, Any]] = Body(..., example=[
-        {"product_name": "All-Purpose Flour", "quantity": 1, "unit": "cup"},
-        {"product_name": "Milk", "quantity": 1, "unit": "cup"},
-        {"product_name": "Large Eggs", "quantity": 2, "unit": "each"}
-    ])) -> Dict[str, Any]:
+    async def analyze_allergens(payload: AllergenAnalyzeRequest) -> Dict[str, Any]:
         """
-        Analyzes a list of ingredients to detect potential allergens using both
-        the internal database and an AI-powered check.
+        Mirrors Streamlit's individual analysis flow:
+        - Inputs: ingredients[], db_confidence (slider), manual_allergens (checkbox selections), recipe_name (optional)
+        - Outputs: database_analysis, ai_analysis, combined_summary
         """
+        ingredients = payload.ingredients or []
         if not ingredients:
             raise HTTPException(status_code=400, detail="Ingredient list cannot be empty.")
 
-        # 1. Run database-driven detection (uses fuzzy/exact matching against patterns)
-        db_results = allergen_engine.detect_allergens_database(ingredients)
+        db_conf = int(payload.db_confidence or 70)
+        manual = payload.manual_allergens or None
+        recipe_name = payload.recipe_name
 
-        # 2. Run AI analysis (Claude via Anthropic)
+        # 1. Database-driven detection with confidence threshold
+        db_results = allergen_engine.detect_allergens_database(ingredients, min_confidence=db_conf)
+
+        # 2. AI analysis (Claude via Anthropic)
         is_ok, api_key, message = require_anthropic_key()
         if not is_ok:
             raise HTTPException(status_code=400, detail=f"Cannot perform AI analysis: {message}")
+        ai_results = allergen_engine.detect_allergens_ai(ingredients, api_key, recipe_name=recipe_name)
 
-        ai_results = allergen_engine.detect_allergens_ai(ingredients, api_key)
-
-        # 3. Combine detections into a single summary
+        # 3. Combine detections, including manual selections
         combined_results = allergen_engine.combine_allergen_detections(
             db_results,
             ai_results,
-            None
+            manual
         )
 
         return {
@@ -357,14 +381,11 @@ if feature_enabled("allergen"):
         }
 
     @app.post("/allergens/analyze-recipe", tags=["Allergens"], summary="Analyze a saved recipe for allergens")
-    async def analyze_recipe_allergens(payload: Dict[str, Any] = Body(..., example={
-        "recipe_name": "Shrimp Tacos",
-        "db_confidence": 70,
-        "save": False
-    })) -> Dict[str, Any]:
-        recipe_name = str(payload.get("recipe_name", "")).strip()
-        db_confidence = int(payload.get("db_confidence", 70) or 70)
-        do_save = bool(payload.get("save", False))
+    async def analyze_recipe_allergens(payload: AllergenAnalyzeRecipeRequest) -> Dict[str, Any]:
+        recipe_name = str(payload.recipe_name or "").strip()
+        db_confidence = int(payload.db_confidence or 70)
+        manual = payload.manual_allergens or None
+        do_save = bool(payload.save or False)
         if not recipe_name:
             raise HTTPException(status_code=400, detail="`recipe_name` is required.")
 
@@ -380,7 +401,7 @@ if feature_enabled("allergen"):
         if not is_ok:
             raise HTTPException(status_code=400, detail=f"Cannot perform AI analysis: {message}")
         ai_results = allergen_engine.detect_allergens_ai(ingredients, api_key, recipe_name=recipe_name)
-        combined = allergen_engine.combine_allergen_detections(db_results, ai_results, None)
+        combined = allergen_engine.combine_allergen_detections(db_results, ai_results, manual)
 
         report = allergen_engine.generate_allergen_report(recipe_name, combined, ingredients)
 
@@ -396,12 +417,12 @@ if feature_enabled("allergen"):
         }
 
     @app.post("/allergens/generate-qr", tags=["Allergens"], summary="Generate allergen report QR code")
-    async def generate_allergen_qr(payload: Dict[str, Any] = Body(..., example={
-        "recipe_name": "Shrimp Tacos",
-        "base_url": "http://example.com"
-    })) -> Dict[str, Any]:
-        recipe_name = str(payload.get("recipe_name", "")).strip()
-        base_url = str(payload.get("base_url", "http://example.com")).strip()
+    async def generate_allergen_qr(payload: AllergenQRRequest) -> Dict[str, Any]:
+        recipe_name = str(payload.recipe_name or "").strip()
+        base_url = str(payload.base_url or "http://example.com").strip()
+        fmt = (payload.format or "png").lower()
+        if fmt not in ("png", "svg"):
+            raise HTTPException(status_code=400, detail="`format` must be 'png' or 'svg'.")
         if not recipe_name:
             raise HTTPException(status_code=400, detail="`recipe_name` is required.")
 
@@ -417,10 +438,14 @@ if feature_enabled("allergen"):
             recipe = recipes.get(recipe_name)
             recipe_id = recipe.get("recipe_id")
 
-        file_path, img_bytes = allergen_engine.generate_qr_code(recipe_id, recipe_name, base_url)
-        import base64
-        b64 = base64.b64encode(img_bytes).decode("utf-8")
-        return {"file_path": file_path, "image_base64": b64}
+        if fmt == "png":
+            file_path, img_bytes = allergen_engine.generate_qr_code(recipe_id, recipe_name, base_url)
+            import base64
+            b64 = base64.b64encode(img_bytes).decode("utf-8")
+            return {"file_path": file_path, "image_base64": b64, "format": "png"}
+        else:
+            file_path, svg_string = allergen_engine.generate_qr_code_svg(recipe_id, recipe_name, base_url)
+            return {"file_path": file_path, "svg": svg_string, "format": "svg"}
 
     @app.get("/allergens/recipe/{recipe_name}", tags=["Allergens"], summary="Get saved allergen data for a recipe")
     async def get_recipe_allergens(recipe_name: str) -> Dict[str, Any]:
@@ -428,6 +453,62 @@ if feature_enabled("allergen"):
         if not data:
             raise HTTPException(status_code=404, detail="No allergen data found for recipe.")
         return data
+
+    @app.post("/allergens/batch-analyze", tags=["Allergens"], summary="Batch analyze recipes for allergens")
+    async def batch_analyze_allergens(payload: AllergenBatchAnalyzeRequest) -> Dict[str, Any]:
+        """
+        Mirrors Streamlit's batch analysis tab.
+        - Inputs: recipe_names[], detection_method (Database Only | AI Only | Both), db_confidence, auto_save
+        - Outputs: results[] table with counts and methods; saved flag if auto_save
+        """
+        recipe_names = payload.recipe_names or []
+        method = (payload.detection_method or "Both").strip()
+        db_conf = int(payload.db_confidence or 70)
+        auto_save = bool(payload.auto_save or False)
+        if not recipe_names:
+            raise HTTPException(status_code=400, detail="`recipe_names` cannot be empty.")
+
+        recipes = recipe_engine.load_recipes()
+        is_ok, api_key, message = require_anthropic_key()
+        ai_available = is_ok and bool(api_key)
+
+        results = []
+        for recipe_name in recipe_names:
+            recipe = recipes.get(recipe_name)
+            if not recipe:
+                # Skip missing recipes but include an entry
+                results.append({
+                    "recipe": recipe_name,
+                    "allergens": 0,
+                    "fda_top_9": 0,
+                    "methods": "missing"
+                })
+                continue
+
+            ingredients = recipe.get("ingredients", [])
+            db_result = None
+            ai_result = None
+
+            if method in ("Database Only", "Both"):
+                db_result = allergen_engine.detect_allergens_database(ingredients, min_confidence=db_conf)
+            if method in ("AI Only", "Both") and ai_available:
+                ai_result = allergen_engine.detect_allergens_ai(ingredients, api_key, recipe_name=recipe_name)
+
+            combined = allergen_engine.combine_allergen_detections(db_result, ai_result, None)
+            if auto_save:
+                allergen_engine.save_allergen_data(recipe_name, combined)
+
+            results.append({
+                "recipe": recipe_name,
+                "allergens": len(combined.get('allergens', [])),
+                "fda_top_9": combined.get('fda_top_9_count', 0),
+                "methods": ', '.join(combined.get('detection_methods', []))
+            })
+
+        return {
+            "results": results,
+            "saved": auto_save
+        }
 
 
 # --- Inventory Endpoints ---
